@@ -1,8 +1,9 @@
 import { type Metadata } from "next";
 import OGImage from "@/assets/head/og-image.jpg";
+import { MobileLanding } from "@/domains/home/MobileLanding";
 
 export default async function Home() {
-  return <>직접 구축한 화면</>;
+  return <MobileLanding />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

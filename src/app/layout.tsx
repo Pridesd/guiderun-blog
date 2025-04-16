@@ -2,6 +2,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import Logo from "@/assets/head/logo.webp";
 import OGImage from "@/assets/head/og-image.jpg";
+import "./globals.css";
 
 export default function RootLayout({
   children,

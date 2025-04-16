@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-stagger:
+    fade-in-opacity 0.7s both,
+    fade-in-translate-y 1s cubic-bezier(0.2, 0, 0.2, 1) both;
+
+  --animate-fade-in-width: fade-in-width 0.2s ease-in both;
+  --animate-fade-out-width: fade-out-width 0.2s ease-in both;
+
+  --animate-fade-in-opacity: fade-in-opacity 0.2s ease-in both;
+
+  @keyframes identifier {
+  }
+
+  @keyframes fade-in-width {
+    0% {
+      opacity: 0;
+      width: 0%;
+    }
+    100% {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+
+  @keyframes fade-out-width {
+    0% {
+      opacity: 1;
+      width: 100%;
+    }
+    100% {
+      opacity: 0;
+      width: 0%;
+    }
+  }
+
+  @keyframes fade-in-opacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-translate-y {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

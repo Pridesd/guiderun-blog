@@ -1,0 +1,88 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+import { StaggerAnimation } from "@/components/animations";
+import { Icon } from "@/components/animations/shared";
+
+export const Header = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const requestRef = useRef<number | null>(null);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const updateScroll = () => {
+      setScrollY(window.scrollY);
+      ticking.current = false; // 다시 다음 프레임에 업데이트하도록 풀어줍니다.
+    };
+
+    const handleScroll = () => {
+      // 매 프레임마다 한 번씩만 실행하도록 제한
+      if (!ticking.current) {
+        requestRef.current = requestAnimationFrame(updateScroll);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, []);
+
+  const scrollProgress = Math.min(scrollY / 400, 1);
+
+  const initialWidth = window.innerWidth * 0.9;
+  const initilaTop = 300;
+  const initialLeft = (window.innerWidth * 0.1) / 2;
+  const initialGap = 1.125;
+
+  const targerWidth = 111;
+  const targetTop = 20;
+  const targetLeft = 20;
+  const targetGap = 0;
+
+  const bigLogoWidth =
+    initialWidth - scrollProgress * (initialWidth - targerWidth);
+  const bigLogoTop = initilaTop - scrollProgress * (initilaTop - targetTop);
+  const bigLogoLeft = initialLeft - scrollProgress * (initialLeft - targetLeft);
+  const bigLogoGap = initialGap - scrollProgress * (initialGap - targetGap);
+
+  return (
+    <header className="w-full h-[450px] bg-[#f2f2f2] z-[100]">
+      <div
+        className="fixed flex flex-col z-[100]"
+        style={{
+          top: bigLogoTop,
+          left: bigLogoLeft,
+          gap: `${bigLogoGap}rem`,
+        }}
+      >
+        <StaggerAnimation>
+          <h1
+            className="flex items-center gap-4 origin-left z-[100]"
+            style={{
+              opacity: 1 - scrollProgress * 2,
+              transform: `scale(${1 - scrollProgress})`,
+              height: 24 - scrollProgress * 24,
+            }}
+          >
+            <span className="font-light">함께 더 멀리 달려요</span>
+            <Icon icon="Line" alt="" width={40} />
+            <span className="font-light">가이드런 프로젝트</span>
+          </h1>
+          <Icon
+            icon="TextLogo"
+            alt="TextLogo"
+            width={bigLogoWidth}
+            className="z-[100]"
+            style={{ width: `${bigLogoWidth}px` }}
+          />
+        </StaggerAnimation>
+      </div>
+    </header>
+  );
+};
