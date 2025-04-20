@@ -64,7 +64,7 @@ export const GuideRun = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          backgroundImage: `url(${GuideRunImage})`,
+          backgroundImage: `url(${GuideRunImage.src})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

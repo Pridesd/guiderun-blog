@@ -71,7 +71,7 @@ export const GuideRunInfoBox = ({
         </div>
       </div>
       <hr
-        className={`mt-[-1rem] border-t border-[#aaa] ${open ? "animate-fade-out-width" : "animate-fade-out-width"}`}
+        className={`mt-[-1rem] border-t border-[#aaa] ${open ? "animate-fade-out-width" : "animate-fade-in-width"}`}
         aria-hidden="true"
       />
     </div>
