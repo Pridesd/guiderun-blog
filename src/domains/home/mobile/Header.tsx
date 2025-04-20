@@ -7,6 +7,7 @@ import { Icon } from "@/components/animations/shared";
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
   const requestRef = useRef<number | null>(null);
   const ticking = useRef(false);
 
@@ -33,11 +34,25 @@ export const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
   const scrollProgress = Math.min(scrollY / 400, 1);
 
-  const initialWidth = window.innerWidth * 0.9;
+  const initialWidth = windowWidth * 0.9;
   const initilaTop = 300;
-  const initialLeft = (window.innerWidth * 0.1) / 2;
+  const initialLeft = (windowWidth * 0.1) / 2;
   const initialGap = 1.125;
 
   const targerWidth = 111;
