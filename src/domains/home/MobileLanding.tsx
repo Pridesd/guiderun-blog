@@ -6,11 +6,11 @@ import {
   Header,
   ProgramList,
   Together,
-} from "./mobile";
+} from "./mobile"
 
 export const MobileLanding = () => {
   return (
-    <div className="w-full max-w-[720px] mx-auto h-[300vh]">
+    <div className="mx-auto h-[300vh] w-full max-w-[720px]">
       <Header />
       <Description />
       <ProgramList />
@@ -19,5 +19,5 @@ export const MobileLanding = () => {
       <Final />
       <Copyright />
     </div>
-  );
-};
+  )
+}

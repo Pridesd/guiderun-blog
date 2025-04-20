@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react"
 
 export const StaggerAnimation = ({ children }: PropsWithChildren) => {
   return (
@@ -6,11 +6,10 @@ export const StaggerAnimation = ({ children }: PropsWithChildren) => {
       {React.Children.map(children, (child, index) => (
         <div
           className="animate-stagger"
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
+          style={{ animationDelay: `${index * 0.1}s` }}>
           {child}
         </div>
       ))}
     </>
-  );
-};
+  )
+}

@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 
-import { GuideRunInfoBox } from "./GuideRunInfoBox";
+import { GuideRunInfoBox } from "./GuideRunInfoBox"
 
-import GuideRunImage from "@/assets/home/guiderun-background.png";
+import GuideRunImage from "@/assets/home/guiderun-background.png"
 
 export interface GuideRunInfo {
-  title: string;
-  content: string;
-  link: string;
-  linkLabel: string;
+  title: string
+  content: string
+  link: string
+  linkLabel: string
 }
 
 const CONTENTS: GuideRunInfo[] = [
@@ -43,10 +43,10 @@ const CONTENTS: GuideRunInfo[] = [
 커뮤니티의 범위를 확장하고
 프로그램 참가자들의 심적 접근성을 낮춥니다.`,
   },
-];
+]
 
 export const GuideRun = () => {
-  const [currentOpen, setCurrentOpen] = useState(-1);
+  const [currentOpen, setCurrentOpen] = useState(-1)
 
   return (
     <div
@@ -55,8 +55,7 @@ export const GuideRun = () => {
         width: "100%",
         minHeight: "825px",
         backgroundColor: "#111",
-      }}
-    >
+      }}>
       <div
         aria-hidden
         style={{
@@ -78,15 +77,13 @@ export const GuideRun = () => {
           top: "270px",
           left: "80px",
           gap: "1rem",
-        }}
-      >
+        }}>
         <h2
           style={{
             color: "#fff",
             fontSize: "0.8125rem",
             fontWeight: 700,
-          }}
-        >
+          }}>
           가이드런 프로젝트
         </h2>
         <span
@@ -95,8 +92,7 @@ export const GuideRun = () => {
             fontSize: "1.125rem",
             fontWeight: 700,
             whiteSpace: "break-spaces",
-          }}
-        >
+          }}>
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는
 새로운 달리기 문화입니다.`}
@@ -110,8 +106,7 @@ export const GuideRun = () => {
           paddingTop: "477.5px",
           paddingBottom: "2rem",
           gap: "1rem",
-        }}
-      >
+        }}>
         {CONTENTS.map((info, index) => (
           <GuideRunInfoBox
             key={info.title}
@@ -119,14 +114,14 @@ export const GuideRun = () => {
             open={index === currentOpen}
             onChangeOpen={() => {
               if (index === currentOpen) {
-                setCurrentOpen(-1);
-                return;
+                setCurrentOpen(-1)
+                return
               }
-              setCurrentOpen(index);
+              setCurrentOpen(index)
             }}
           />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}

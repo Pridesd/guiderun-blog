@@ -1,9 +1,9 @@
-import Background from "@/assets/home/guiderun-final.png";
-import { Icon } from "@/components/animations/shared";
+import Background from "@/assets/home/guiderun-final.png"
+import { Icon } from "@/components/animations/shared"
 
 export const Final = () => {
   return (
-    <div className="box-border w-full h-[220px] relative bg-black px-[3.75rem] py-10">
+    <div className="relative box-border h-[220px] w-full bg-black px-[3.75rem] py-10">
       {/* Image Background */}
       <div
         aria-hidden
@@ -12,20 +12,19 @@ export const Final = () => {
       />
 
       {/* Main Content */}
-      <div className="relative flex flex-col items-start gap-3 z-[1]">
-        <h2 className="text-[1.25rem] text-white whitespace-break-spaces font-bold">
+      <div className="relative z-[1] flex flex-col items-start gap-3">
+        <h2 className="text-[1.25rem] font-bold whitespace-break-spaces text-white">
           {`시각장애러너와 가이드러너\n함께 더 멀리 달려요!`}
         </h2>
         <a
           href="https://guiderun.org/intro"
-          className="no-underline text-white h-[50px] pr-4 pl-6 flex items-center justify-center gap-3 border-[1.5px] border-white rounded-full"
-        >
-          <span className="font-medium text-sm text-white">
+          className="flex h-[50px] items-center justify-center gap-3 rounded-full border-[1.5px] border-white pr-4 pl-6 text-white no-underline">
+          <span className="text-sm font-medium text-white">
             가이드런 가입하기
           </span>
           <Icon icon="ArrowRightWhite" alt="" />
         </a>
       </div>
     </div>
-  );
-};
+  )
+}

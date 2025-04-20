@@ -1,8 +1,8 @@
-import { Program, ProgramItem } from "./ProgramItem";
+import { Program, ProgramItem } from "./ProgramItem"
 
-import Summer2024 from "@/assets/home/2024-summer-background.png";
-import Winter2024 from "@/assets/home/2024-winter-background.png";
-import Winter2025 from "@/assets/home/2025-winter-background.png";
+import Summer2024 from "@/assets/home/2024-summer-background.png"
+import Winter2024 from "@/assets/home/2024-winter-background.png"
+import Winter2025 from "@/assets/home/2025-winter-background.png"
 
 const PROGRAMS: Program[] = [
   {
@@ -54,11 +54,11 @@ const PROGRAMS: Program[] = [
     description: "매주 일요일 아침에 다같이 모여 25년 춘계 마라톤 함께 준비",
     image: Winter2025.src,
   },
-];
+]
 
 export const ProgramList = () => {
   return (
-    <div className="box-border px-[1.125rem] py-[0.625rem] flex items-center gap-[0.625rem] overflow-x-auto scrollbar-hide">
+    <div className="scrollbar-hide box-border flex items-center gap-[0.625rem] overflow-x-auto px-[1.125rem] py-[0.625rem]">
       {PROGRAMS.map((program) => (
         <ProgramItem
           key={`${program.name}-${program.year}`}
@@ -66,5 +66,5 @@ export const ProgramList = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}

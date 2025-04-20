@@ -1,11 +1,11 @@
-import { getFormattedSeason, Program } from "./ProgramItem";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Icon } from "@/components/animations/shared";
+import { getFormattedSeason, Program } from "./ProgramItem"
+import { Dialog, DialogPanel } from "@headlessui/react"
+import { Icon } from "@/components/animations/shared"
 
 interface PropgramModalProps {
-  open: boolean;
-  onClose: VoidFunction;
-  program: Program;
+  open: boolean
+  onClose: VoidFunction
+  program: Program
 }
 
 export const ProgramModal = ({
@@ -15,12 +15,12 @@ export const ProgramModal = ({
 }: PropgramModalProps) => {
   const renderDescription = (title: string, data: string) => {
     return (
-      <span className="text-white text-sm font-normal whitespace-break-spaces">{`${title}: ${data}`}</span>
-    );
-  };
+      <span className="text-sm font-normal whitespace-break-spaces text-white">{`${title}: ${data}`}</span>
+    )
+  }
 
-  const titleId = `program-${program.year}-${program.season}-title`;
-  const descriptionId = `program-${program.year}-${program.season}-description`;
+  const titleId = `program-${program.year}-${program.season}-title`
+  const descriptionId = `program-${program.year}-${program.season}-description`
 
   return (
     <Dialog
@@ -28,52 +28,46 @@ export const ProgramModal = ({
       onClose={onClose}
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
-      className="relative z-50 bg-amber-400"
-    >
+      className="relative z-50 bg-amber-400">
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel
             transition
-            className="box-border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[8px] w-[320px] h-[540px] px-5 py-[3.75rem] bg-[rgba(255,255,255,0.1)] overflow-hidden z-[100] animate-fade-in-opacity"
-          >
+            className="animate-fade-in-opacity absolute top-1/2 left-1/2 z-[100] box-border h-[540px] w-[320px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] px-5 py-[3.75rem]">
             <div
-              className="absolute inset-0 bg-cover bg-center blur-[2px] z-[101]"
+              className="absolute inset-0 z-[101] bg-cover bg-center blur-[2px]"
               style={{ backgroundImage: `url(${program.image})` }}
             />
             <button
               className="absolute top-[1rem] right-[1rem] z-[102] rounded-full border-none p-2"
-              onClick={onClose}
-            >
+              onClick={onClose}>
               <Icon icon="Clear" width={25} alt="닫기" />
             </button>
-            <div className="relative flex flex-col gap-[1.875rem] z-[102]">
+            <div className="relative z-[102] flex flex-col gap-[1.875rem]">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
-                    <span className="flex items-center justify-center h-[18px] px-[5px] py-[1px] rounded-[2px] bg-[#d2d2d2] text-[#b51f1f] text-sm font-normal">
+                    <span className="flex h-[18px] items-center justify-center rounded-[2px] bg-[#d2d2d2] px-[5px] py-[1px] text-sm font-normal text-[#b51f1f]">
                       {program.year}
                     </span>
                     <span
-                      className={`flex items-center justify-center h-[18px] px-[5px] py-[1px] rounded-[2px] text-white text-[0.75rem] font-normal ${
+                      className={`flex h-[18px] items-center justify-center rounded-[2px] px-[5px] py-[1px] text-[0.75rem] font-normal text-white ${
                         program.season === "summer"
                           ? "bg-[#B77778]"
                           : "bg-[#7794B7]"
-                      }`}
-                    >
+                      }`}>
                       {getFormattedSeason(program.season)}
                     </span>
                   </div>
                   <h2
-                    className="text-white text-3xl leading-normal font-bold "
-                    id={titleId}
-                  >
+                    className="text-3xl leading-normal font-bold text-white"
+                    id={titleId}>
                     {program.name}
                   </h2>
                 </div>
                 <div
                   className="flex flex-col gap-[0.1365rem]"
-                  id={descriptionId}
-                >
+                  id={descriptionId}>
                   {renderDescription(
                     "기간",
                     `${program.period.start} ~ ${program.period.end}`
@@ -86,22 +80,21 @@ export const ProgramModal = ({
               <hr className="fill-white" aria-hidden />
               {program.result && (
                 <div className="flex flex-col gap-3">
-                  <h2 className="text-white text-xl font-bold">
+                  <h2 className="text-xl font-bold text-white">
                     동계 훈련 참여 결과
                   </h2>
                   <div className="flex flex-col gap-[0.625rem] pl-[0.625rem]">
-                    <span className="text-white text-sm font-normal whitespace-break-spaces">
+                    <span className="text-sm font-normal whitespace-break-spaces text-white">
                       {program.result}
                     </span>
                     {program.link && (
                       <a
-                        className="text-white font-bold text-sm underline"
+                        className="text-sm font-bold text-white underline"
                         target="_blank"
                         href={program.link}
                         style={{
                           textUnderlinePosition: "under",
-                        }}
-                      >
+                        }}>
                         {program.linkLabel ?? "결과 바로 가기"}
                       </a>
                     )}
@@ -113,5 +106,5 @@ export const ProgramModal = ({
         </div>
       </div>
     </Dialog>
-  );
-};
+  )
+}
