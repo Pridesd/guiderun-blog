@@ -1,5 +1,12 @@
 import { getFormattedSeason, Program } from "./ProgramItem"
-import { Dialog, DialogPanel } from "@headlessui/react"
+import {
+  CloseButton,
+  Description,
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react"
 import { Icon } from "@/components/animations/shared"
 
 interface PropgramModalProps {
@@ -28,7 +35,8 @@ export const ProgramModal = ({
       onClose={onClose}
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
-      className="relative z-50 bg-amber-400">
+      className="relative z-50">
+      <DialogBackdrop className="fixed inset-0 bg-black/60" />
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel
@@ -38,11 +46,11 @@ export const ProgramModal = ({
               className="absolute inset-0 z-[101] bg-cover bg-center blur-[2px]"
               style={{ backgroundImage: `url(${program.image})` }}
             />
-            <button
-              className="absolute top-[1rem] right-[1rem] z-[102] rounded-full border-none p-2"
+            <CloseButton
+              className="absolute top-[1rem] right-[1rem] z-[102] cursor-pointer rounded-full border-none p-2"
               onClick={onClose}>
               <Icon icon="Clear" width={25} alt="닫기" />
-            </button>
+            </CloseButton>
             <div className="relative z-[102] flex flex-col gap-[1.875rem]">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
@@ -59,13 +67,13 @@ export const ProgramModal = ({
                       {getFormattedSeason(program.season)}
                     </span>
                   </div>
-                  <h2
+                  <DialogTitle
                     className="text-3xl leading-normal font-bold text-white"
                     id={titleId}>
                     {program.name}
-                  </h2>
+                  </DialogTitle>
                 </div>
-                <div
+                <Description
                   className="flex flex-col gap-[0.1365rem]"
                   id={descriptionId}>
                   {renderDescription(
@@ -75,7 +83,7 @@ export const ProgramModal = ({
                   {renderDescription("내용", program.description)}
                   {renderDescription("장소", program.location)}
                   {renderDescription("코칭 스탭", program.staff)}
-                </div>
+                </Description>
               </div>
               <hr className="fill-white" aria-hidden />
               {program.result && (
