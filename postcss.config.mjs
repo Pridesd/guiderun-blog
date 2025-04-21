@@ -1,4 +1,4 @@
-import scrollbarHide from "tailwind-scrollbar-hide";
+import scrollbarHide from "tailwind-scrollbar-hide"
 
 const config = {
   plugins: {
@@ -6,5 +6,5 @@ const config = {
       plugins: [scrollbarHide],
     },
   },
-};
-export default config;
+}
+export default config
