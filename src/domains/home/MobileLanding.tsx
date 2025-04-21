@@ -10,7 +10,7 @@ import {
 
 export const MobileLanding = () => {
   return (
-    <div className="mx-auto h-[300vh] w-full max-w-[720px]">
+    <div className="mx-auto w-full max-w-[720px]">
       <Header />
       <Description />
       <ProgramList />

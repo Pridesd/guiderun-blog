@@ -36,6 +36,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleResize = () => {
+      setScrollY(window.scrollY)
       setWindowWidth(window.innerWidth)
     }
 
@@ -49,7 +50,6 @@ export const Header = () => {
   }, [])
 
   const scrollProgress = Math.min(scrollY / 400, 1)
-  console.log(scrollProgress)
 
   const initialWidth = windowWidth * 0.9
   const initilaTop = 300
