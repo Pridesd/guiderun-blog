@@ -1,4 +1,4 @@
-import { Icon } from "@/components/shared"
+import { DynamicIcon } from "@/components/shared/dynamic-icon"
 
 export const Together = () => {
   return (
@@ -9,7 +9,7 @@ export const Together = () => {
           {`프로그램이 없을 때에도\n매주 일요일 아침\n`}
           <div className="flex items-center">
             {`함께 모여 `}
-            <Icon icon="Workout" alt="" />
+            <DynamicIcon icon="Workout" alt="" desktopWidth={90} />
             {" 운동해요!"}
           </div>
         </span>
@@ -19,7 +19,7 @@ export const Together = () => {
         target="_blank"
         className="flex h-[53px] items-center justify-center gap-2 rounded-full border-[1.5px] border-[#111] px-6 text-[#111] no-underline md:gap-5 md:p-11">
         <span className="font-norma text-sm md:text-3xl">문의하러 가기</span>
-        <Icon icon="ArrowRight" alt="" />
+        <DynamicIcon icon="ArrowRight" alt="" desktopWidth={30} />
       </a>
     </div>
   )
