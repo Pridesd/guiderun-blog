@@ -49,3 +49,19 @@
 
   --animate-fade-in-opacity: fade-in-opacity 0.2s ease-in both;
 }
+
+.scrollbar-hide {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}

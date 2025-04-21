@@ -41,24 +41,26 @@ export const ProgramItem = ({ program }: { program: Program }) => {
   return (
     <>
       <button
-        className="box-border flex h-[370px] w-[290px] flex-shrink-0 cursor-pointer rounded-md bg-cover bg-center p-[2.25rem_1.875rem]"
+        className="box-border flex h-[370px] w-[290px] flex-shrink-0 cursor-pointer rounded-md bg-cover bg-center p-[2.25rem_1.875rem] md:h-[780px] md:w-[640px] md:rounded-2xl md:px-[3.75rem] md:py-20"
         style={{ backgroundImage: `url(${program.image})` }}
         onClick={() => setOpenModal(true)}
         aria-controls="modal">
-        <div className="flex flex-col items-start gap-2">
-          <div className="flex gap-2">
-            <span className="flex h-[18px] items-center justify-center rounded-[2px] bg-[#d2d2d2] px-[5px] py-[1px] text-sm font-normal text-[#b51f1f]">
+        <div className="flex flex-col items-start gap-2 md:gap-4">
+          <div className="flex gap-2 md:gap-2.5">
+            <span className="flex h-[18px] items-center justify-center rounded-[2px] bg-[#d2d2d2] px-[5px] py-[1px] text-sm font-normal text-[#b51f1f] md:h-[30px] md:text-xl">
               {program.year}
             </span>
             <span
-              className={`flex h-[18px] items-center justify-center rounded-[2px] px-[5px] py-[1px] text-[0.75rem] font-normal text-white ${
+              className={`flex h-[18px] items-center justify-center rounded-[2px] px-[5px] py-[1px] text-[0.75rem] font-normal text-white md:h-[30px] md:text-xl ${
                 program.season === "summer" ? "bg-[#B77778]" : "bg-[#7794B7]"
               }`}>
               {getFormattedSeason(program.season)}
             </span>
           </div>
-          <span className="text-2xl font-bold text-white">{program.name}</span>
-          <span className="text-sm font-normal text-white">{`${program.period.start} ~ ${program.period.end}`}</span>
+          <span className="text-2xl font-bold text-white md:text-[2.5rem]">
+            {program.name}
+          </span>
+          <span className="text-sm font-normal text-white md:text-xl">{`${program.period.start} ~ ${program.period.end}`}</span>
         </div>
       </button>
       <ProgramModal

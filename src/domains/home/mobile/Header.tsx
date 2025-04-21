@@ -54,7 +54,7 @@ export const Header = () => {
   const isDesktop = windowWidth > 768
 
   const initialWidth = windowWidth * (isDesktop ? 0.7 : 0.9)
-  const initilaTop = isDesktop ? 590 : 300
+  const initilaTop = isDesktop ? 500 : 300
   const initialLeft = (windowWidth * (isDesktop ? 0.3 : 0.1)) / 2
   const initialGap = 1.125
 
