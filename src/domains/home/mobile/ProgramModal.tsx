@@ -85,7 +85,7 @@ export const ProgramModal = ({
                   {renderDescription("코칭 스탭", program.staff)}
                 </Description>
               </div>
-              <hr className="fill-white" aria-hidden />
+              <hr className="border-white" aria-hidden />
               {program.result && (
                 <div className="flex flex-col gap-3">
                   <h2 className="text-xl font-bold text-white">

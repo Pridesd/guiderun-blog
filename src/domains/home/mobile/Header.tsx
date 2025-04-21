@@ -49,6 +49,7 @@ export const Header = () => {
   }, [])
 
   const scrollProgress = Math.min(scrollY / 400, 1)
+  console.log(scrollProgress)
 
   const initialWidth = windowWidth * 0.9
   const initilaTop = 300
@@ -60,10 +61,15 @@ export const Header = () => {
   const targetLeft = 20
   const targetGap = 0
 
-  const bigLogoWidth =
+  const bigLogoWidth = Math.floor(
     initialWidth - scrollProgress * (initialWidth - targerWidth)
-  const bigLogoTop = initilaTop - scrollProgress * (initilaTop - targetTop)
-  const bigLogoLeft = initialLeft - scrollProgress * (initialLeft - targetLeft)
+  )
+  const bigLogoTop = Math.floor(
+    initilaTop - scrollProgress * (initilaTop - targetTop)
+  )
+  const bigLogoLeft = Math.floor(
+    initialLeft - scrollProgress * (initialLeft - targetLeft)
+  )
   const bigLogoGap = initialGap - scrollProgress * (initialGap - targetGap)
 
   return (

@@ -11,6 +11,7 @@ export const Description = () => {
       <StaggerAnimation>
         <p>
           <span
+            tabIndex={1}
             role="text"
             className="text-[1.125rem] leading-[28px] font-normal whitespace-break-spaces">
             {`가이드런프로젝트는

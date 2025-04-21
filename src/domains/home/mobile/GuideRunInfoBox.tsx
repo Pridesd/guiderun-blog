@@ -62,9 +62,7 @@ export const GuideRunInfoBox = ({
             <a
               href={info.link}
               className="mb-[2px] flex items-center justify-end gap-2 border-b border-[#aaa] pr-[5px] pb-[3px] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-white">
-              <span className="font-semibold" color="#FFF">
-                {info.linkLabel}
-              </span>
+              <span className="font-semibold text-white">{info.linkLabel}</span>
               <Icon icon="ArrowRightSmall" alt="" />
             </a>
           </div>
