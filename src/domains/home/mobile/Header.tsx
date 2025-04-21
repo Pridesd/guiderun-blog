@@ -51,9 +51,11 @@ export const Header = () => {
 
   const scrollProgress = Math.min(scrollY / 400, 1)
 
-  const initialWidth = windowWidth * 0.9
-  const initilaTop = 300
-  const initialLeft = (windowWidth * 0.1) / 2
+  const isDesktop = windowWidth > 768
+
+  const initialWidth = windowWidth * (isDesktop ? 0.7 : 0.9)
+  const initilaTop = isDesktop ? 590 : 300
+  const initialLeft = (windowWidth * (isDesktop ? 0.3 : 0.1)) / 2
   const initialGap = 1.125
 
   const targerWidth = 111
@@ -73,7 +75,7 @@ export const Header = () => {
   const bigLogoGap = initialGap - scrollProgress * (initialGap - targetGap)
 
   return (
-    <header className="z-[100] h-[450px] w-full bg-[#f2f2f2]">
+    <header className="z-[100] h-[450px] w-full bg-[#f2f2f2] md:h-[900px]">
       <div
         className="fixed z-[100] flex flex-col"
         style={{
