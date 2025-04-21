@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 
 import { StaggerAnimation } from "@/components/animations"
-import { Icon } from "@/components/animations/shared"
+import { Icon } from "@/components/shared"
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0)

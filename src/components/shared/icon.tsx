@@ -1,3 +1,5 @@
+"use client"
+
 import { IconKey, Icons } from "@/assets/svg"
 import Image, { ImageProps } from "next/image"
 

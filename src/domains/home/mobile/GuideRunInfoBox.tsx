@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 
 import { GuideRunInfo } from "./GuideRun"
 
-import { Icon } from "@/components/animations/shared"
+import { Icon } from "@/components/shared"
 
 interface GuideRunInfoBoxProps {
   info: GuideRunInfo

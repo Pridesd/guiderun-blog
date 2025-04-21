@@ -1,5 +1,5 @@
 import Background from "@/assets/home/guiderun-final.png"
-import { Icon } from "@/components/animations/shared"
+import { Icon } from "@/components/shared"
 
 export const Final = () => {
   return (

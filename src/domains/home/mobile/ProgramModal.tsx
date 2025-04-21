@@ -7,7 +7,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react"
-import { Icon } from "@/components/animations/shared"
+import { Icon } from "@/components/shared"
 
 interface PropgramModalProps {
   open: boolean
