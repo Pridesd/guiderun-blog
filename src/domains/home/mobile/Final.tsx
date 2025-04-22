@@ -8,7 +8,10 @@ export const Final = () => {
       <div
         aria-hidden
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${Background.src})` }}
+        style={{
+          backgroundImage: `url(${Background.src})`,
+          backgroundPosition: "bottom",
+        }}
       />
 
       {/* Main Content */}

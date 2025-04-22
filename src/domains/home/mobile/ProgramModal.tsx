@@ -51,7 +51,7 @@ export const ProgramModal = ({
               onClick={onClose}>
               <Icon icon="Clear" width={25} alt="닫기" />
             </CloseButton>
-            <div className="relative z-[102] flex flex-col gap-[1.875rem]">
+            <div className="relative z-[102] flex flex-col gap-[1.875rem] md:gap-[3.125rem]">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2 md:gap-2.5">
                   <div className="flex gap-2 md:gap-4">

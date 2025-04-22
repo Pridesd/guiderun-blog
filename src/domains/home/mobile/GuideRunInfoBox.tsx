@@ -61,6 +61,7 @@ export const GuideRunInfoBox = ({
             </span>
             <a
               href={info.link}
+              tabIndex={open ? 0 : -1}
               className="mb-[2px] flex items-center justify-end gap-2 border-b border-[#aaa] pr-[5px] pb-[3px] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-white">
               <span className="font-semibold text-white">{info.linkLabel}</span>
               <Icon icon="ArrowRightSmall" alt="" />
@@ -69,7 +70,7 @@ export const GuideRunInfoBox = ({
         </div>
       </div>
       <hr
-        className={`mt-[-1rem] border-t border-[#aaa] ${open ? "animate-fade-out-width" : "animate-fade-in-width"}`}
+        className={`md: mt-[-1rem] border-t border-[#aaa] ${open ? "animate-fade-out-width" : "animate-fade-in-width"}`}
         aria-hidden="true"
       />
     </div>
