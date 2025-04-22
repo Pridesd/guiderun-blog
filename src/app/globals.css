@@ -40,6 +40,12 @@
   }
 }
 
+.bg-100px_center {
+  @media (width < 48rem /* 768px */) {
+    background-position: -350px center;
+  }
+}
+
 @theme {
   --animate-stagger:
     fade-in-opacity 0.7s both, fade-in-translate-y 1s ease-out both;

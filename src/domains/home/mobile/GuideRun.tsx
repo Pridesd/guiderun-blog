@@ -49,64 +49,25 @@ export const GuideRun = () => {
   const [currentOpen, setCurrentOpen] = useState(-1)
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        minHeight: "825px",
-        backgroundColor: "#111",
-      }}>
+    <div className="relative min-h-[825px] w-full bg-[#111] md:min-h-[800px] lg:min-h-[1000px]">
       <div
         aria-hidden
+        className="bg-100px_center absolute inset-0 bg-cover md:bg-center"
         style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
           backgroundImage: `url(${GuideRunImage.src})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
         }}
       />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          top: "270px",
-          left: "80px",
-          gap: "1rem",
-        }}>
-        <h2
-          style={{
-            color: "#fff",
-            fontSize: "0.8125rem",
-            fontWeight: 700,
-          }}>
+      <div className="absolute top-[270px] left-[80px] flex flex-col gap-4 md:top-[120px] md:left-[100px]">
+        <h2 className="text-[0.8125rem] font-bold text-white md:text-base">
           가이드런 프로젝트
         </h2>
-        <span
-          style={{
-            color: "#fff",
-            fontSize: "1.125rem",
-            fontWeight: 700,
-            whiteSpace: "break-spaces",
-          }}>
+        <span className="text-lg font-bold whitespace-break-spaces text-white md:text-4xl md:leading-[52px]">
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는
 새로운 달리기 문화입니다.`}
         </span>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "0 1.25rem",
-          paddingTop: "477.5px",
-          paddingBottom: "2rem",
-          gap: "1rem",
-        }}>
+      <div className="flex flex-col gap-4 px-5 pt-[477.5px] pb-8 md:absolute md:right-[80px] md:bottom-[100px] md:left-0 md:p-0">
         {CONTENTS.map((info, index) => (
           <GuideRunInfoBox
             key={info.title}

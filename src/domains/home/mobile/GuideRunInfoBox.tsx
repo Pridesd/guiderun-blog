@@ -36,8 +36,8 @@ export const GuideRunInfoBox = ({
         aria-controls={contentId}
         onClick={onChangeOpen}>
         <h3
-          className={`origin-right text-[2rem] font-thin text-white transition-transform duration-200 ease-in-out ${
-            open ? "scale-[0.875]" : "scale-100"
+          className={`origin-right text-[2rem] font-thin text-white transition-transform duration-200 ease-in-out md:text-[45px] lg:text-[60px] ${
+            open ? "scale-[0.875] md:scale-[0.75]" : "scale-100"
           }`}>
           {info.title}
         </h3>
@@ -56,13 +56,13 @@ export const GuideRunInfoBox = ({
         style={{ maxHeight: open ? `${contentHeight}px` : "0px" }}>
         <div ref={contentRef}>
           <div className="flex flex-col items-end gap-3 pr-3">
-            <span className="text-center font-thin text-[#ccc]">
+            <span className="text-end font-thin whitespace-break-spaces text-[#ccc] md:text-xl lg:text-3xl">
               {info.content}
             </span>
             <a
               href={info.link}
               tabIndex={open ? 0 : -1}
-              className="mb-[2px] flex items-center justify-end gap-2 border-b border-[#aaa] pr-[5px] pb-[3px] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-white">
+              className="mb-[2px] flex items-center justify-end gap-2 border-b border-[#aaa] pr-[5px] pb-[3px] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-white md:text-lg lg:text-2xl">
               <span className="font-semibold text-white">{info.linkLabel}</span>
               <Icon icon="ArrowRightSmall" alt="" />
             </a>
@@ -70,7 +70,7 @@ export const GuideRunInfoBox = ({
         </div>
       </div>
       <hr
-        className={`md: mt-[-1rem] border-t border-[#aaa] ${open ? "animate-fade-out-width" : "animate-fade-in-width"}`}
+        className={`mt-[-1rem] border-t border-[#aaa] md:max-w-[400px] lg:max-w-[500px] ${open ? "animate-fade-out-width" : "animate-fade-in-width"}`}
         aria-hidden="true"
       />
     </div>
