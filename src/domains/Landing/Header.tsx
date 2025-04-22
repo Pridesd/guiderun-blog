@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { StaggerAnimation } from "@/components/animations"
 import { Icon } from "@/components/shared"
+import Link from "next/link"
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -104,6 +105,9 @@ export const Header = () => {
           />
         </StaggerAnimation>
       </div>
+      <Link href="/blog" className="absolute top-5 right-7 text-2xl">
+        Blog
+      </Link>
     </header>
   )
 }
