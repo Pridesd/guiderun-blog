@@ -52,6 +52,8 @@ const PROGRAMS: Program[] = [
     location: "여의도공원",
     staff: "런콥 컴퍼니(박명현 감독 및 산하 코치진)",
     description: "매주 일요일 아침에 다같이 모여 25년 춘계 마라톤 함께 준비",
+    link: "https://drive.google.com/file/d/1-AwzylyM01rT47370ez-4zIGiU4motuo/view?usp=sharing",
+    linkLabel: "프로그램 운영 결과 바로가기 >",
     image: Winter2025.src,
     result: `총 참석인원 :
  • 시각장애러너 : 12명(최대 16명, 최소 8명)

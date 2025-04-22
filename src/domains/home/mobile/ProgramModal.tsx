@@ -41,7 +41,7 @@ export const ProgramModal = ({
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel
             transition
-            className="animate-fade-in-opacity absolute top-1/2 left-1/2 z-[100] box-border h-[540px] w-[320px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] px-5 py-[3.75rem] md:h-full md:max-h-[90%] md:w-full md:max-w-[40%] md:px-[6.25rem] md:py-[7.5rem]">
+            className="animate-fade-in-opacity absolute top-1/2 left-1/2 z-[100] box-border min-h-[540px] w-[320px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] px-5 py-[3.75rem] md:h-full md:max-h-[90%] md:w-full md:max-w-[40%] md:px-[6.25rem] md:py-[7.5rem]">
             <div
               className="absolute inset-0 z-[101] bg-cover bg-center blur-[2px]"
               style={{ backgroundImage: `url(${program.image})` }}
