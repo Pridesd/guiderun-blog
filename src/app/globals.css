@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@keyframes fade-in-width {
+  0% {
+    opacity: 0;
+    width: 0%;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes fade-out-width {
+  0% {
+    opacity: 1;
+    width: 100%;
+  }
+  100% {
+    opacity: 0;
+    width: 0%;
+  }
+}
+
+@keyframes fade-in-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-translate-y {
+  0% {
+    transform: translateY(60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bg-100px_center {
+  @media (width < 48rem /* 768px */) {
+    background-position: -350px center;
+  }
+}
+
+@theme {
+  --animate-stagger:
+    fade-in-opacity 0.7s both, fade-in-translate-y 1s ease-out both;
+
+  --animate-fade-in-width: fade-in-width 0.2s ease-in both;
+  --animate-fade-out-width: fade-out-width 0.2s ease-in both;
+
+  --animate-fade-in-opacity: fade-in-opacity 0.2s ease-in both;
+}
+
+.scrollbar-hide {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
