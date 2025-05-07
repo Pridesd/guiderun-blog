@@ -75,7 +75,7 @@ export const Header = () => {
   const initialWidth = windowWidth * (isDesktop ? 0.7 : 0.9)
   const initilaTop = isDesktop ? 500 : 300
   const initialLeft = (windowWidth * (isDesktop ? 0.3 : 0.1)) / 2
-  const initialGap = 1.125
+  const initialGap = isDesktop ? 3 : 1.125
 
   const targerWidth = isDesctop ? 222 : 111
   const targetTop = 20
@@ -104,7 +104,7 @@ export const Header = () => {
         }}>
         <StaggerAnimation>
           <h1
-            className="z-[100] flex origin-left items-center gap-4"
+            className="z-[100] flex origin-left items-center gap-4 md:text-[30px]"
             style={{
               opacity: 1 - scrollProgress * 2,
               transform: `scale(${1 - scrollProgress})`,
