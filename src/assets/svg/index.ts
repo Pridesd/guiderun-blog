@@ -7,7 +7,6 @@ import GuiderunCopyright from "./guiderun-copyright.svg"
 import Line from "./line.svg"
 import TextLogoWhite from "./text-logo-white.svg"
 import TextLogo from "./text-logo.svg"
-import Workout from "./workout.svg"
 
 export const Icons = {
   ArrowRightSmall,
@@ -19,7 +18,6 @@ export const Icons = {
   Line,
   TextLogoWhite,
   TextLogo,
-  Workout,
 }
 
 export type IconType = typeof Icons

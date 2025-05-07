@@ -9,6 +9,7 @@ import Link from "next/link"
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
+  const [isDesctop, setIsDesctop] = useState(false)
   const requestRef = useRef<number | null>(null)
   const ticking = useRef(false)
 
@@ -50,6 +51,23 @@ export const Header = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsDesctop(true)
+      } else {
+        setIsDesctop(false)
+      }
+    }
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize)
+      handleResize()
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }
+  }, [])
+
   const scrollProgress = Math.min(scrollY / 400, 1)
 
   const isDesktop = windowWidth > 768
@@ -57,9 +75,9 @@ export const Header = () => {
   const initialWidth = windowWidth * (isDesktop ? 0.7 : 0.9)
   const initilaTop = isDesktop ? 500 : 300
   const initialLeft = (windowWidth * (isDesktop ? 0.3 : 0.1)) / 2
-  const initialGap = 1.125
+  const initialGap = isDesktop ? 3 : 1.125
 
-  const targerWidth = 111
+  const targerWidth = isDesctop ? 222 : 111
   const targetTop = 20
   const targetLeft = 20
   const targetGap = 0
@@ -86,7 +104,7 @@ export const Header = () => {
         }}>
         <StaggerAnimation>
           <h1
-            className="z-[100] flex origin-left items-center gap-4"
+            className="z-[100] flex origin-left items-center gap-4 md:text-[30px]"
             style={{
               opacity: 1 - scrollProgress * 2,
               transform: `scale(${1 - scrollProgress})`,
@@ -105,7 +123,9 @@ export const Header = () => {
           />
         </StaggerAnimation>
       </div>
-      <Link href="/blog" className="absolute top-5 right-7 text-2xl">
+      <Link
+        href="/blog"
+        className="fixed top-4 right-7 z-40 text-base md:top-3 md:text-2xl">
         Blog
       </Link>
     </header>
