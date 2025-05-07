@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export const Together = () => {
   return (
-    <div className="box-border flex w-full flex-col items-start gap-[30px] pt-[120px] pb-[100px] pl-[15px] md:pt-[240px] md:pb-[200px] md:pl-[100px]">
+    <div className="box-border flex w-full flex-col items-start gap-[30px] pt-[120px] pb-[100px] pl-[15px] md:pt-[240px] md:pb-[200px] md:pl-[100px] xl:pl-[300px]">
       <div className="flex flex-col gap-[15px] pl-[5px]">
         <h2 className="text-[13px] font-bold md:text-base">함께 달리기</h2>
         <span className="text-[32px] font-bold whitespace-break-spaces md:text-6xl md:leading-[104px]">
