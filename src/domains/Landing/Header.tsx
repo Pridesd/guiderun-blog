@@ -9,6 +9,7 @@ import Link from "next/link"
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
+  const [isDesctop, setIsDesctop] = useState(false)
   const requestRef = useRef<number | null>(null)
   const ticking = useRef(false)
 
@@ -50,6 +51,23 @@ export const Header = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsDesctop(true)
+      } else {
+        setIsDesctop(false)
+      }
+    }
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize)
+      handleResize()
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }
+  }, [])
+
   const scrollProgress = Math.min(scrollY / 400, 1)
 
   const isDesktop = windowWidth > 768
@@ -59,7 +77,7 @@ export const Header = () => {
   const initialLeft = (windowWidth * (isDesktop ? 0.3 : 0.1)) / 2
   const initialGap = 1.125
 
-  const targerWidth = 111
+  const targerWidth = isDesctop ? 222 : 111
   const targetTop = 20
   const targetLeft = 20
   const targetGap = 0
