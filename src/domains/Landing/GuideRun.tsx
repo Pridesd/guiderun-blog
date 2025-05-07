@@ -61,10 +61,14 @@ export const GuideRun = () => {
         <h2 className="text-[0.8125rem] font-bold text-white md:text-base">
           가이드런 프로젝트
         </h2>
-        <span className="text-lg font-bold whitespace-break-spaces text-white md:text-4xl md:leading-[52px]">
+        <span className="text-lg font-bold whitespace-break-spaces text-white md:hidden">
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는
 새로운 달리기 문화입니다.`}
+        </span>
+        <span className="hidden font-bold whitespace-break-spaces text-white md:inline md:text-4xl md:leading-[52px]">
+          {`가이드러닝은 신체적 건강 뿐만 아니라
+정신적으로도 성장하는 새로운 달리기 문화입니다.`}
         </span>
       </div>
       <div className="flex flex-col gap-4 px-5 pt-[477.5px] pb-8 md:absolute md:right-[80px] md:bottom-[100px] md:left-0 md:p-0">
