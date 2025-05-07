@@ -1,4 +1,6 @@
 import { DynamicIcon } from "@/components/shared/dynamic-icon"
+import Workout from "@/assets/home/workout.png"
+import Image from "next/image"
 
 export const Together = () => {
   return (
@@ -9,7 +11,7 @@ export const Together = () => {
           {`프로그램이 없을 때에도\n매주 일요일 아침\n`}
           <div className="flex items-center">
             {`함께 모여 `}
-            <DynamicIcon icon="Workout" alt="" desktopWidth={90} />
+            <Image src={Workout} alt="" className="w-[70px] md:w-[90px]" />
             {" 운동해요!"}
           </div>
         </span>
