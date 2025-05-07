@@ -123,7 +123,9 @@ export const Header = () => {
           />
         </StaggerAnimation>
       </div>
-      <Link href="/blog" className="absolute top-5 right-7 text-2xl">
+      <Link
+        href="/blog"
+        className="fixed top-4 right-7 z-40 text-base md:top-3 md:text-2xl">
         Blog
       </Link>
     </header>
