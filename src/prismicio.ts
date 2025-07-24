@@ -15,7 +15,7 @@ export const repositoryName =
 /**
  * The project's Prismic route resolvers. This list determines a Prismic document's URL.
  */
-const routes: Route[] = [{ type: "page", path: "/:uid" }]
+const routes: Route[] = [{ type: "blog_post", path: "/blog/:uid" }]
 
 /**
  * Creates a Prismic client for the project's repository. The client is used to
