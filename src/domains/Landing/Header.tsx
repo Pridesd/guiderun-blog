@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { StaggerAnimation } from "@/components/animations"
 import { Icon } from "@/components/shared"
+import Link from "next/link"
 // import Link from "next/link"
 
 export const Header = () => {
@@ -123,11 +124,17 @@ export const Header = () => {
           />
         </StaggerAnimation>
       </div>
-      {/* <Link
-        href="/blog"
-        className="fixed top-4 right-7 z-40 text-base md:top-3 md:text-2xl">
-        Blog
-      </Link> */}
+      <nav className="fixed top-4 right-7 z-40 flex items-center justify-end gap-3 md:top-3 lg:gap-[3.75rem]">
+        <Link
+          aria-current
+          href="/"
+          className="border-b-2 font-medium lg:text-[1.25rem]">
+          Home
+        </Link>
+        <Link href="/blog" className="font-medium lg:text-[1.25rem]">
+          Blog
+        </Link>
+      </nav>
     </header>
   )
 }
