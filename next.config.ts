@@ -26,6 +26,14 @@ const nextConfig: NextConfig = {
     // 수정된 설정을 리턴해야만 적용됩니다.
     return config
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.prismic.io",
+      },
+    ],
+  },
 }
 
 export default nextConfig
