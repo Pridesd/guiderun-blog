@@ -13,7 +13,7 @@ export const BlogPostItem = ({ post }: BlogPostItemProps) => {
   const publishedDate = post.first_publication_date.split("T")[0]
 
   return (
-    <div className="min-h-[20rem] w-[22.5rem] md:min-h-[26.25rem] md:w-[27.5rem]">
+    <div className="min-h-[20rem] w-[22.5rem] transition-all duration-300 hover:-translate-y-2 md:min-h-[26.25rem] md:w-[27.5rem]">
       <Link href={post.url ?? "/blog"} className="w-full">
         {titleImage.url ? (
           <Image
