@@ -39,9 +39,13 @@ export const Header = () => {
         {NAVIGATIONS.map((navi) => (
           <Link
             key={navi.label}
-            aria-current={checkCurrentPath(navi.path) ? "page" : undefined}
-            href="/"
-            className={`border-b-2 font-medium lg:text-[1.25rem] ${checkCurrentPath(navi.path) ? "border-b-black" : "border-b-[#fff]"} hover:border-b-black`}>
+            aria-current={
+              checkCurrentPath(navi.path, navi.label === "Blog")
+                ? "page"
+                : undefined
+            }
+            href={navi.path}
+            className={`border-b-2 font-medium lg:text-[1.25rem] ${checkCurrentPath(navi.path, navi.label === "Blog") ? "border-b-black" : "border-b-[#fff]"} hover:border-b-black`}>
             {navi.label}
           </Link>
         ))}
