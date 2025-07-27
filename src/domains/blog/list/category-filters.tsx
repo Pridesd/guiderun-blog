@@ -17,7 +17,7 @@ export const CategoryFilters = ({
   currentCategory = "all",
 }: CategoryFiltersProps) => {
   return (
-    <div id="_category" className="flex items-center gap-2">
+    <div id="_category" className="flex items-center gap-2 md:px-10">
       {CATEGORIES.map((category) => (
         <Link
           key={category.key}
