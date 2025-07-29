@@ -1,6 +1,5 @@
 import { Header } from "@/components/shared"
 import { BlogPosts, Category, CategoryFilters, HeroSection } from "./list"
-
 interface BlogListLayoutProps {
   currentCategory?: Category
 }

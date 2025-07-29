@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { PropsWithChildren } from "react"
 
 const BlogLayout = ({ children }: PropsWithChildren) => {
@@ -5,3 +6,9 @@ const BlogLayout = ({ children }: PropsWithChildren) => {
 }
 
 export default BlogLayout
+
+export const generateMetadata = (): Metadata => {
+  return {
+    title: "블로그 | ",
+  }
+}

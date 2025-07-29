@@ -1,30 +1,43 @@
-import { PrismicPreview } from "@prismicio/next";
-import { repositoryName } from "@/prismicio";
-import Logo from "@/assets/head/logo.webp";
-import OGImage from "@/assets/head/og-image.jpg";
-import "./globals.css";
+import { PrismicPreview } from "@prismicio/next"
+import { repositoryName } from "@/prismicio"
+import Logo from "@/assets/head/logo.webp"
+import OGImage from "@/assets/head/og-image.jpg"
+import "./globals.css"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s가이드런 프로젝트",
+    default: "가이드런 프로젝트", // 기본 제목
+  },
+  description:
+    "시각장애러너와 가이드러너가 함께 만들어가는 가이드런 프로젝트입니다. 함께 달려요!",
+  icons: {
+    icon: Logo.src, // favicon
+    apple: Logo.src, // apple-touch-icon
+  },
+  openGraph: {
+    title: "가이드런프로젝트",
+    description: "함께 달려요!",
+    images: [
+      {
+        url: OGImage.src,
+        width: 1200, // OG 이미지 너비
+        height: 630, // OG 이미지 높이
+      },
+    ],
+  },
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
-      <head>
-        <title>가이드런 프로젝트</title>
-        <meta
-          name="description"
-          content="시각장애러너와 가이드러너가 함께 만들어가는 가이드런 프로젝트입니다. 함께 달려요!"
-        />
-        <link rel="icon" href={Logo.src} />
-        <link rel="apple-touch-icon" href={Logo.src} />
-        <meta property="og:title" content="가이드런프로젝트" />
-        <meta property="og:description" content="함께 달려요!" />
-        <meta property="og:image" content={OGImage.src} />
-      </head>
       <body>{children}</body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
-  );
+  )
 }
