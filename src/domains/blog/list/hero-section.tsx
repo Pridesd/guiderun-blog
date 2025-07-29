@@ -25,7 +25,9 @@ const HERO_IMAGES = [
 ]
 
 export const HeroSection = () => {
-  const heroIndex = Math.floor(Math.random() * 5)
+  const heroIndex = Math.floor(Math.random() * 4)
+
+  console.log(heroIndex)
 
   return (
     <div className="flex flex-col items-center gap-[1.75rem] pt-[5.5rem] pb-[5.25rem] md:gap-[2.75rem] md:pt-[6.5rem]">
