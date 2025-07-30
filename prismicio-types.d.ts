@@ -69,7 +69,7 @@ type ContentRelationshipFieldWithData<
   >
 }[Exclude<TCustomType[number], string>["id"]]
 
-type BlogPostDocumentDataSlicesSlice = RichTextSlice
+type BlogPostDocumentDataSlicesSlice = TableSlice | RichTextSlice
 
 /**
  * Content for Blog Post documents
@@ -113,23 +113,12 @@ interface BlogPostDocumentData {
    * Author field in *Blog Post*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: 작성자를 입력해주세요
+   * - **Placeholder**: 작성자를 입력해주세요. 미입력 시 "팀 가이드런" 이 입력됩니다.
    * - **API ID Path**: blog_post.author
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   author: prismic.KeyTextField
-
-  /**
-   * Publication Date field in *Blog Post*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: 게시일을 선택해주세요
-   * - **API ID Path**: blog_post.publication_date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/date
-   */
-  publication_date: prismic.DateField
 
   /**
    * Slice Zone field in *Blog Post*
@@ -237,6 +226,48 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >
 
+/**
+ * Primary content in *Table → Default → Primary*
+ */
+export interface TableSliceDefaultPrimary {
+  /**
+   * Table field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Table
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.table
+   * - **Documentation**: https://prismic.io/docs/fields/table
+   */
+  table: prismic.TableField
+}
+
+/**
+ * Default variation for Table Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TableSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TableSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *Table*
+ */
+type TableSliceVariation = TableSliceDefault
+
+/**
+ * Table Shared Slice
+ *
+ * - **API ID**: `table`
+ * - **Description**: Table
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TableSlice = prismic.SharedSlice<"table", TableSliceVariation>
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -266,6 +297,10 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      TableSlice,
+      TableSliceDefaultPrimary,
+      TableSliceVariation,
+      TableSliceDefault,
     }
   }
 }

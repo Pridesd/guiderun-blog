@@ -40,14 +40,7 @@
         "type": "Text",
         "config": {
           "label": "Author",
-          "placeholder": "작성자를 입력해주세요"
-        }
-      },
-      "publication_date": {
-        "type": "Date",
-        "config": {
-          "label": "Publication Date",
-          "placeholder": "게시일을 선택해주세요"
+          "placeholder": "작성자를 입력해주세요. 미입력 시 \"팀 가이드런\" 이 입력됩니다. "
         }
       },
       "slices": {
@@ -55,6 +48,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "table": {
+              "type": "SharedSlice"
+            },
             "rich_text": {
               "type": "SharedSlice"
             }
