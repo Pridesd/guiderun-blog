@@ -15,10 +15,12 @@
           "type": "StructuredText",
           "config": {
             "label": "Content",
-            "placeholder": "Lorem ipsum...",
+            "placeholder": "블로그 글을 입력해주세요",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,embed,list-item",
-            "labels": ["codespan"]
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,embed,heading4,heading5,heading6,rtl,o-list-item,list-item,image",
+            "labels": [
+              "codespan"
+            ]
           }
         }
       },
