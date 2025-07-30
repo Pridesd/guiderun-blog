@@ -69,7 +69,7 @@ type ContentRelationshipFieldWithData<
   >
 }[Exclude<TCustomType[number], string>["id"]]
 
-type BlogPostDocumentDataSlicesSlice = TableSlice | RichTextSlice
+type BlogPostDocumentDataSlicesSlice = RichTextSlice
 
 /**
  * Content for Blog Post documents
