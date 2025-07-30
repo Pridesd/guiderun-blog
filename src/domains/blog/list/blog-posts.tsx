@@ -37,7 +37,6 @@ export const BlogPosts = async ({ filteredCategory }: BlogPostsProps) => {
       title_image
       category
       author
-      publication_date
     }
   }`
 
@@ -47,7 +46,7 @@ export const BlogPosts = async ({ filteredCategory }: BlogPostsProps) => {
   })
 
   return (
-    <div className="mt-8 grid grid-cols-1 justify-center justify-items-center gap-y-6 md:grid-cols-2 md:gap-y-12">
+    <div className="mt-8 grid grid-cols-1 justify-center justify-items-center gap-y-6 lg:grid-cols-2 lg:gap-y-12">
       {posts.map((post) => (
         <BlogPostItem key={post.uid} post={post} />
       ))}
