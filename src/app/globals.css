@@ -81,7 +81,11 @@
 
     /* 문단 (p) */
     p {
-      @apply leading-loose;
+      @apply mb-3 leading-loose;
+    }
+
+    strong {
+      @apply font-bold;
     }
 
     /* 링크 (a) */
