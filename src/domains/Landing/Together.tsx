@@ -8,7 +8,7 @@ export const Together = () => {
       <div className="flex flex-col gap-[15px] pl-[5px]">
         <h2 className="text-[13px] font-bold md:text-base">함께 달리기</h2>
         <span className="text-[32px] font-bold whitespace-break-spaces md:text-6xl md:leading-[104px]">
-          {`프로그램이 없을 때에도\n매주 일요일 아침\n`}
+          {`프로그램이 없을 때에도\n매주 주말 아침\n`}
           <div className="flex items-center">
             {`함께 모여 `}
             <Image src={Workout} alt="" className="w-[70px] md:w-[90px]" />
