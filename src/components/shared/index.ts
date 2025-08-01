@@ -1,4 +1,5 @@
 export * from "./dynamic-icon"
+export * from "./footer"
 export * from "./header"
 export * from "./hidden-text"
 export * from "./icon"
