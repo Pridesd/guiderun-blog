@@ -5,8 +5,15 @@ import { SliceZone } from "@prismicio/react"
 
 import { createClient } from "@/prismicio"
 import { components } from "@/slices"
+import { Header } from "@/components/shared"
+import { GuiderunLink, TeamProfile, TitleSection } from "@/domains/blog/[uid]"
+import Image from "next/image"
+import Logo from "@/assets/head/logo.webp"
+import OgImage from "@/assets/head/og-image.jpg"
 
 type Params = { uid: string }
+
+const DEFAULT_TITLE = "가이드런 이야기"
 
 export default async function BlogDetailPage({
   params,
@@ -17,7 +24,37 @@ export default async function BlogDetailPage({
   const client = createClient()
   const page = await client.getByUID("blog_post", uid).catch(() => notFound())
 
-  return <SliceZone slices={page.data.slices} components={components} />
+  return (
+    <>
+      <Header />
+      <TitleSection
+        title={page.data.title ?? DEFAULT_TITLE}
+        category={page.data.category}
+        author={page.data.author}
+        publishedDate={page.first_publication_date.split("T")[0]}
+      />
+      <div className="flex justify-center px-[2rem]">
+        <Image
+          src={page.data.title_image?.url ?? Logo}
+          alt={page.data.title_image?.alt ?? ""}
+          width={100}
+          height={100}
+          className={`mt-[1.5rem] w-full rounded-3xl md:mt-[4.125rem] ${page.data.title_image?.url ? "w-full md:w-[70%]" : "w-full md:w-[40%]"}`}
+        />
+      </div>
+      <main className="mx-auto px-[1.5rem] pb-[3rem]">
+        {page.data.slices.length > 0 && (
+          <div className="blog-post -mt-[4rem]">
+            <SliceZone slices={page.data.slices} components={components} />
+          </div>
+        )}
+        <div className="mx-auto md:max-w-[720px]">
+          <GuiderunLink />
+          <TeamProfile />
+        </div>
+      </main>
+    </>
+  )
 }
 
 export async function generateMetadata({
@@ -30,10 +67,12 @@ export async function generateMetadata({
   const page = await client.getByUID("blog_post", uid).catch(() => notFound())
 
   return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
+    title: `${page.data.meta_title ?? page.data.title} | 블로그 | 가이드런 프로젝트`,
+    description: page.data.meta_description ?? "가이드런 프로젝트의 이야기",
     openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
+      images: [{ url: asImageSrc(page.data.meta_image) ?? OgImage.src }],
+      title: `${page.data.meta_title ?? page.data.title} | 블로그 | 가이드런 프로젝트`,
+      description: page.data.meta_description ?? "가이드런 프로젝트의 이야기",
     },
   }
 }
