@@ -46,6 +46,92 @@
   }
 }
 
+@layer components {
+  .blog-post {
+    /* 기본 텍스트 스타일 */
+    @apply text-lg leading-relaxed text-gray-800;
+
+    /* 모든 하위 요소에 대한 기본 마진 설정 */
+    & > * {
+      @apply mb-6;
+    }
+
+    /* 제목 (h1 ~ h6) */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold tracking-tight text-gray-900;
+      @apply mt-10 mb-4; /* 제목 위쪽 여백을 더 줘서 단락 구분 */
+    }
+    h1 {
+      @apply text-4xl md:text-5xl;
+    }
+    h2 {
+      @apply text-3xl;
+    }
+    h3 {
+      @apply text-2xl;
+    }
+    h4 {
+      @apply text-xl;
+    }
+
+    /* 문단 (p) */
+    p {
+      @apply mb-3 leading-loose;
+    }
+
+    strong {
+      @apply font-bold;
+    }
+
+    /* 링크 (a) */
+    a {
+      @apply underline underline-offset-4;
+    }
+
+    /* 목록 (ul, ol) */
+    ul,
+    ol {
+      @apply pl-8;
+    }
+    ul {
+      @apply list-disc;
+    }
+    ol {
+      @apply list-decimal;
+    }
+    li {
+      @apply mb-2;
+    }
+
+    /* 코드 블록 (pre) */
+    pre {
+      @apply overflow-x-auto rounded-lg bg-gray-800 p-4 font-mono text-sm text-white;
+    }
+
+    /* 이미지 (img) */
+    img {
+      @apply h-auto w-full rounded-lg;
+    }
+    /* Prismic 이미지 블록의 p태그 여백 제거 */
+    .block-img {
+      @apply mb-0;
+    }
+
+    /* 임베드 (Embed) */
+    [data-oembed] {
+      @apply relative h-0 w-full pb-[56.25%]; /* 16:9 비율 */
+    }
+    [data-oembed] > iframe {
+      @apply absolute top-0 left-0 h-full w-full rounded-lg;
+    }
+  }
+}
+
 @theme {
   --animate-stagger:
     fade-in-opacity 0.7s both, fade-in-translate-y 1s ease-out both;

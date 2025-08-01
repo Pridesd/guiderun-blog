@@ -1,0 +1,86 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"table": {
+				"__TYPE__": "TableContent",
+				"content": [
+					{
+						"key": "295fcd56-d93c-4581-92ec-7800f9e93847",
+						"type": "tableRow",
+						"content": [
+							{
+								"key": "da684f64-7aeb-4ef6-a522-982bafd7f5fb",
+								"type": "tableHeader",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Laboris."
+											}
+										}
+									]
+								}
+							},
+							{
+								"key": "1bd4b6bd-92ea-4b98-966f-e0505e899e38",
+								"type": "tableHeader",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "In."
+											}
+										}
+									]
+								}
+							}
+						]
+					},
+					{
+						"key": "e4c9d7f2-79dd-4ed8-b571-04296a59acd3",
+						"type": "tableRow",
+						"content": [
+							{
+								"key": "601475ba-5739-4fef-b6c5-bb42b6ca13fd",
+								"type": "tableCell",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Aute ut anim ipsum fugiat."
+											}
+										}
+									]
+								}
+							},
+							{
+								"key": "8e720d3f-1861-4cb6-961c-8a27b461a81a",
+								"type": "tableCell",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Sint laborum voluptate sint consequat."
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
