@@ -10,6 +10,7 @@ import { GuiderunLink, TeamProfile, TitleSection } from "@/domains/blog/[uid]"
 import Image from "next/image"
 import Logo from "@/assets/head/logo.webp"
 import OgImage from "@/assets/head/og-image.jpg"
+import Link from "next/link"
 
 type Params = { uid: string }
 
@@ -51,6 +52,13 @@ export default async function BlogDetailPage({
         <div className="mx-auto md:max-w-[720px]">
           <GuiderunLink />
           <TeamProfile />
+          <div className="flex justify-center">
+            <Link
+              href="/blog"
+              className="rounded-full bg-gray-100 px-5 py-4 font-bold">
+              블로그 목록
+            </Link>
+          </div>
         </div>
       </main>
     </>
