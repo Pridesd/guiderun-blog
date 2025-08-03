@@ -6,11 +6,16 @@ import { revalidatePath } from "next/cache"
  * content is published in Prismic.
  */
 export async function POST(request: NextRequest) {
-  // 1. 요청 본문(body)을 JSON으로 파싱
   const body = await request.json()
 
   if (body.secret !== process.env.PRISMIC_WEBHOOK_SECRET) {
     return NextResponse.json({ message: "Invalid token" }, { status: 401 })
+  }
+
+  if (!body.documents || body.documents.length === 0) {
+    return NextResponse.json({
+      message: "No documents to revalidate (Test trigger likely)",
+    })
   }
 
   const pathToRevalidate = `/blog/${body.documents[0]}`
