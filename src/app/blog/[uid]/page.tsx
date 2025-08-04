@@ -88,7 +88,7 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams({}) {
+export async function generateStaticParams() {
   const client = createClient()
   const pages = await client.getAllByType("blog_post")
 
