@@ -36,6 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta
+        name="naver-site-verification"
+        content="47de70dfa433bbe55ca07e7afaf7ac1ec890afbd"
+      />
       <body>{children}</body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
