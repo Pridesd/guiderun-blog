@@ -22,8 +22,11 @@ export default async function BlogDetailPage({
   params: Promise<Params>
 }) {
   const { uid } = await params
+  const id = decodeURIComponent(uid)
+
   const client = createClient()
-  const page = await client.getByUID("blog_post", uid).catch(() => notFound())
+
+  const page = await client.getByUID("blog_post", id).catch(() => notFound())
 
   return (
     <>
@@ -38,8 +41,8 @@ export default async function BlogDetailPage({
         <Image
           src={page.data.title_image?.url ?? Logo}
           alt={page.data.title_image?.alt ?? ""}
-          width={100}
-          height={100}
+          width={2000}
+          height={2000}
           className={`mt-[1.5rem] w-full rounded-3xl md:mt-[4.125rem] ${page.data.title_image?.url ? "w-full md:w-[70%]" : "w-full md:w-[40%]"}`}
         />
       </div>
@@ -85,7 +88,7 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams({}) {
   const client = createClient()
   const pages = await client.getAllByType("blog_post")
 
