@@ -1,117 +1,52 @@
-# Prismic + Next.js Minimal Starter
+# 가이드런 프로젝트 블로그
 
-Want to quickly get started building your own project with [Prismic][prismic] and [Next.js][nextjs]? This project includes basic configurations and nothing else. The project includes one Rich Text slice, a homepage, and a dynamic page.
+가이드런 프로젝트는 시각장애러너와 가이드러너가 함께 달리며, 건강과 성장을 추구하는 러닝 커뮤니티입니다. 이 블로그는 프로젝트의 소식, 훈련 프로그램, 서비스 안내, 커뮤니티 활동 등 다양한 이야기를 공유합니다.
 
-- **Demo**: [Open live demo][live-demo]
-- **Learn more about Prismic and Next.js**: [Prismic Next.js Documentation][prismic-docs]
+## 주요 기능
 
-&nbsp;
+- **블로그 게시글**: 훈련, 서비스 등 카테고리별로 게시글을 확인할 수 있습니다.
+- **프로그램 안내**: 시즌별 훈련 프로그램 정보와 결과를 제공합니다.
+- **가이드런 서비스 소개**: 프로젝트와 서비스, 크라우드펀딩 등 다양한 활동을 소개합니다.
+- **접근성**: 반응형 UI와 시각장애인을 위한 접근성 고려.
 
-![Website screenshot](https://user-images.githubusercontent.com/31219208/228821412-fdde92b2-c13c-4287-b799-611fa96a5fd6.png)
+## 시작하기
 
-&nbsp;
+### 개발 환경
 
-## 🚀 Quick Start
+- Next.js 15
+- TypeScript
+- Prismic CMS
+- TailwindCSS
 
-To start a new project using this starter:
-
-1. Visit <https://prismic.io/dashboard>.
-2. Create a new Prismic repository by selecting **Next.js**.
-3. Select the **Minimal starter**.
-4. Fill out your repository details and continue with the steps given in Prismic.
-
-When you're ready to start your project, run the following command:
+### 설치 및 실행
 
 ```sh
+npm install
 npm run dev
 ```
 
-## How to use your project
+로컬 개발 서버가 `http://localhost:3000`에서 실행됩니다.
 
-To edit the content of this project, go to [prismic.io/dashboard](https://prismic.io/dashboard), click on the repository for this website, and start editing.
+### 배포
 
-### Create a page
-
-To create a page, click on the green pencil icon, then select **Page**.
-
-Pages are made of Slices. You can add and rearrange Slices to your pages.
-
-Your new page will be accessible by its URL, but it won't appear on the website automatically. To let users discover it, add it to the navigation.
-
-### Preview documents
-
-If you chose this starter when you created a new repository from the Prismic Dashboard, then your repository is preconfigured with previews on localhost. To change the preview configuration or add previews to your production or staging environments, see [Preview Drafts in Next.js](https://prismic.io/docs/technologies/preview-content-nextjs) in the Prismic documentation.
-
-### Customize this website
-
-This website is preconfigured with Prismic. It has three Prismic packages installed:
-
-- `@prismicio/client` provides helpers for fetching content from Prismic
-- `@prismicio/react` provides React components for rendering content from Prismic
-- `@prismicio/next` provides a wrapper component to configure Prismic previews
-
-These packages are already integrated and employed in this app. Take a look at the code to see how they're used.
-
-### Edit the code
-
-There are two steps to rendering content from Prismic in your Next.js project:
-
-1. Fetch content from the Prismic API using `@prismicio/client`.
-2. Template the content using components from `@prismicio/react`.
-
-Here are some of the files in your project that you can edit:
-
-- `prismicio.ts` - This file includes configuration for `@prismicio/client` and exports useful API helpers.
-- `app/layout.tsx` - This is your layout component, which includes configuration for `@prismicio/react` and `@prismicio/next`.
-- `app/page.tsx` - This is the app homepage. It queries and renders a page document with the UID (unique identifier) "home" from the Prismic API.
-- `app/[uid]/page.tsx` - This is the page component, which queries and renders a page document from your Prismic repository based on the UID.
-- `slices/*/index.tsx` - Each Slice in your project has an index.tsx file that renders the Slice component. Edit this file to customize your Slices.
-
-These are important files that you should leave as-is:
-
-- `app/api/exit-preview/route.ts` - Do not edit or delete this file. This is the API endpoint to close a Prismic preview session.
-- `app/api/preview/route.ts` - Do not edit or delete this file. This is the API endpoint to launch a Prismic preview session.
-- `app/slice-simulator/page.tsx` - Do not edit or delete this file. This file simulates your Slice components in development.
-- `slices/` - This directory contains Slice components, which are generated programmatically by Slice Machine. To customize a Slice template, you can edit the Slice's index.tsx file. To add Slices, delete Slices, or edit Slice models, use Slice Machine (more info below).
-
-Learn more about how to edit your components with [Fetch Data in Next.js](https://prismic.io/docs/technologies/fetch-data-nextjs) and [Template Content in Next.js](https://prismic.io/docs/technologies/template-content-nextjs).
-
-Learn more about how to use [TypeScript with Prismic](https://prismic.io/docs/typescript-nextjs).
-
-### Deploy to the web
-
-To put your project online, see [Deploy your Next.js App](https://prismic.io/docs/technologies/deploy-nextjs).
-
-### Edit content models with Slice Machine
-
-This project includes an application called Slice Machine, which generates models for your Custom Types and Slices. Slice Machine stores the models locally in your codebase, so you can save and version them. It also syncs your models to Prismic. To learn how to use Slice Machine, read [Model Content in Next.js](https://prismic.io/docs/technologies/model-content-nextjs).
-
-If you change or add to your Custom Types, you'll need to update your route handling to match. To learn how to do that, read [Define Paths in Next.js](https://prismic.io/docs/technologies/define-paths-nextjs).
-
-## Documentation
-
-For the official Prismic documentation, see [Prismic's guide for Next.js][prismic-docs] or the [technical references for the installed Prismic packages](https://prismic.io/docs/technologies/technical-references).
-
-## License
-
-```
-Copyright 2013-2022 Prismic <contact@prismic.io> (https://prismic.io)
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+```sh
+npm run build
+npm start
 ```
 
-[prismic]: https://prismic.io/
-[prismic-docs]: https://prismic.io/docs/technologies/nextjs
-[prismic-sign-up]: https://prismic.io/dashboard/signup
-[nextjs]: https://nextjs.org/
-[live-demo]: https://nextjs-starter-prismic-minimal.vercel.app/
+## 폴더 구조
+
+- `/src/app` : 페이지 및 라우트
+- `/src/domains` : 도메인별 UI 컴포넌트
+- `/src/slices` : Prismic Slice 컴포넌트
+- `/src/components/shared` : 공용 컴포넌트
+- `/customtypes` : Prismic 타입 정의
+
+## Prismic 연동
+
+- Prismic에서 콘텐츠를 관리하며, Slice Machine으로 모델을 동기화합니다.
+- 환경변수와 API 키 설정은 `.env` 파일을 참고하세요.
+
+## 문의 및 참여
+
+- [가이드런 공식 홈페이지](https://guiderun.org)
