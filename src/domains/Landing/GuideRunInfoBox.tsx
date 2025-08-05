@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 
 import { GuideRunInfo } from "./GuideRun"
 
-import { Icon } from "@/components/shared"
+import { HiddenText, Icon } from "@/components/shared"
 
 interface GuideRunInfoBoxProps {
   info: GuideRunInfo
@@ -62,8 +62,13 @@ export const GuideRunInfoBox = ({
             <a
               href={info.link}
               tabIndex={open ? 0 : -1}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mb-[2px] flex items-center justify-end gap-2 border-b border-[#aaa] pr-[5px] pb-[3px] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-white md:text-lg lg:text-2xl">
-              <span className="font-semibold text-white">{info.linkLabel}</span>
+              <span className="font-semibold text-white">
+                {info.linkLabel}
+                <HiddenText>새창 열림</HiddenText>
+              </span>
               <Icon icon="ArrowRightSmall" alt="" />
             </a>
           </div>
