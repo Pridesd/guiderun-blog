@@ -1,5 +1,6 @@
 export * from "./dynamic-icon"
 export * from "./footer"
+export * from "./google-analytics"
 export * from "./header"
 export * from "./hidden-text"
 export * from "./icon"
