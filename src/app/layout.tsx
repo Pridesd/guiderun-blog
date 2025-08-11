@@ -5,6 +5,7 @@ import OGImage from "@/assets/head/og-image.jpg"
 import "./globals.css"
 import { Metadata } from "next"
 import { GoogleAnalytics } from "@/components/shared"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +42,9 @@ export default function RootLayout({
         name="naver-site-verification"
         content="47de70dfa433bbe55ca07e7afaf7ac1ec890afbd"
       />
-      {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+      <Suspense>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+      </Suspense>
       <body>{children}</body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
