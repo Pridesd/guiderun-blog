@@ -43,7 +43,7 @@ export default async function BlogDetailPage({
           alt={page.data.title_image?.alt ?? ""}
           width={2000}
           height={2000}
-          className={`mt-[1.5rem] w-full rounded-3xl md:mt-[4.125rem] ${page.data.title_image?.url ? "w-full md:w-[70%]" : "w-full md:w-[40%]"}`}
+          className={`mt-[1.5rem] w-full rounded-3xl md:mt-[4.125rem] ${page.data.title_image?.url ? "w-full md:w-[70%] md:max-w-[600px]" : "w-full md:w-[40%]"}`}
         />
       </div>
       <main className="mx-auto px-[1.5rem] pb-[3rem]">
@@ -62,6 +62,7 @@ export default async function BlogDetailPage({
               블로그 목록
             </Link>
           </div>
+          xw
         </div>
       </main>
     </>
