@@ -62,7 +62,6 @@ export default async function BlogDetailPage({
               블로그 목록
             </Link>
           </div>
-          xw
         </div>
       </main>
     </>
