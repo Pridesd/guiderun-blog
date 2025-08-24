@@ -9,7 +9,11 @@ const CategorizedBlogListPage = async ({
 }) => {
   const category = (await params).slug
 
-  if (category !== "service" && category !== "training") {
+  if (
+    category !== "service" &&
+    category !== "training" &&
+    category !== "operation"
+  ) {
     redirect("/blog")
   }
 

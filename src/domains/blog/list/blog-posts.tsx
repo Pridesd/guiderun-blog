@@ -16,6 +16,8 @@ export const BlogPosts = async ({ filteredCategory }: BlogPostsProps) => {
         return "서비스"
       case "training":
         return "훈련"
+      case "operation":
+        return "운영"
     }
     return ""
   }

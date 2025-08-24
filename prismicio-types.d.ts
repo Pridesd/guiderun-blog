@@ -107,7 +107,7 @@ interface BlogPostDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  category: prismic.SelectField<"훈련" | "서비스", "filled">
+  category: prismic.SelectField<"훈련" | "서비스" | "운영", "filled">
 
   /**
    * Author field in *Blog Post*

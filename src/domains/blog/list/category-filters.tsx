@@ -1,7 +1,7 @@
 import { HiddenText } from "@/components/shared"
 import Link from "next/link"
 
-export type Category = "all" | "training" | "service"
+export type Category = "all" | "training" | "service" | "operation"
 
 interface CategoryFiltersProps {
   currentCategory?: Category
@@ -11,6 +11,7 @@ const CATEGORIES: { key: Category; path: string; label: string }[] = [
   { key: "all", path: "/", label: "전체" },
   { key: "training", path: "/category/training", label: "훈련" },
   { key: "service", path: "/category/service", label: "서비스" },
+  { key: "operation", path: "/category/operation", label: "운영" },
 ]
 
 export const CategoryFilters = ({
