@@ -3,6 +3,7 @@ import ArrowRightUp from "./arrow-right-up.svg"
 import ArrowRightWhite from "./arrow-right-white.svg"
 import ArrowRight from "./arrow-right.svg"
 import Clear from "./clear.svg"
+import Copy from "./copy.svg"
 import GuiderunCopyright from "./guiderun-copyright.svg"
 import Line from "./line.svg"
 import Share from "./share.svg"
@@ -15,6 +16,7 @@ export const Icons = {
   ArrowRightWhite,
   ArrowRight,
   Clear,
+  Copy,
   GuiderunCopyright,
   Line,
   Share,
