@@ -11,6 +11,7 @@ import Image from "next/image"
 import Logo from "@/assets/head/logo.webp"
 import OgImage from "@/assets/head/og-image.jpg"
 import Link from "next/link"
+import { LikeButton } from "@/domains/blog/[uid]/like-button"
 
 type Params = { uid: string }
 
@@ -53,6 +54,9 @@ export default async function BlogDetailPage({
           </div>
         )}
         <div className="mx-auto md:max-w-[720px]">
+          <div className="px-6 pb-6">
+            <LikeButton id={uid} />
+          </div>
           <GuiderunLink />
           <TeamProfile />
           <div className="flex justify-center">
