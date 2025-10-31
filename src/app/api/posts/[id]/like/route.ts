@@ -31,10 +31,10 @@ async function findRowByBlogId(id: string) {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const { targetRow } = await findRowByBlogId(id)
 
     let likeCount = 0
@@ -51,10 +51,10 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const { sheet, targetRow } = await findRowByBlogId(id)
 
     let newLikeCount = 0
@@ -81,10 +81,10 @@ export async function POST(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const { targetRow } = await findRowByBlogId(id)
 
     let newLikeCount = 0
