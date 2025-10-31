@@ -5,6 +5,8 @@ import ArrowRight from "./arrow-right.svg"
 import Clear from "./clear.svg"
 import Copy from "./copy.svg"
 import GuiderunCopyright from "./guiderun-copyright.svg"
+import HeartFill from "./heart-fill.svg"
+import Heart from "./heart.svg"
 import Line from "./line.svg"
 import Share from "./share.svg"
 import TextLogoWhite from "./text-logo-white.svg"
@@ -18,6 +20,8 @@ export const Icons = {
   Clear,
   Copy,
   GuiderunCopyright,
+  HeartFill,
+  Heart,
   Line,
   Share,
   TextLogoWhite,

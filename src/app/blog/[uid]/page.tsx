@@ -6,7 +6,12 @@ import { SliceZone } from "@prismicio/react"
 import { createClient } from "@/prismicio"
 import { components } from "@/slices"
 import { Header } from "@/components/shared"
-import { GuiderunLink, TeamProfile, TitleSection } from "@/domains/blog/[uid]"
+import {
+  GuiderunLink,
+  LikeButton,
+  TeamProfile,
+  TitleSection,
+} from "@/domains/blog/[uid]"
 import Image from "next/image"
 import Logo from "@/assets/head/logo.webp"
 import OgImage from "@/assets/head/og-image.jpg"
@@ -53,6 +58,9 @@ export default async function BlogDetailPage({
           </div>
         )}
         <div className="mx-auto md:max-w-[720px]">
+          <div className="px-6 pb-6">
+            <LikeButton id={uid} />
+          </div>
           <GuiderunLink />
           <TeamProfile />
           <div className="flex justify-center">
