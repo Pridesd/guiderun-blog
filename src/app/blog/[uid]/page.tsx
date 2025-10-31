@@ -6,12 +6,16 @@ import { SliceZone } from "@prismicio/react"
 import { createClient } from "@/prismicio"
 import { components } from "@/slices"
 import { Header } from "@/components/shared"
-import { GuiderunLink, TeamProfile, TitleSection } from "@/domains/blog/[uid]"
+import {
+  GuiderunLink,
+  LikeButton,
+  TeamProfile,
+  TitleSection,
+} from "@/domains/blog/[uid]"
 import Image from "next/image"
 import Logo from "@/assets/head/logo.webp"
 import OgImage from "@/assets/head/og-image.jpg"
 import Link from "next/link"
-import { LikeButton } from "@/domains/blog/[uid]/like-button"
 
 type Params = { uid: string }
 
