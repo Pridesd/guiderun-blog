@@ -1,5 +1,5 @@
 import { BlogListLayout } from "@/domains/blog"
-import { Category } from "@/domains/blog/list"
+import { Category, CATEGORY_LIST } from "@/domains/blog/list"
 import { redirect } from "next/navigation"
 
 const CategorizedBlogListPage = async ({
@@ -9,11 +9,9 @@ const CategorizedBlogListPage = async ({
 }) => {
   const category = (await params).slug
 
-  if (
-    category !== "service" &&
-    category !== "training" &&
-    category !== "operation"
-  ) {
+  const allCategories = Object.keys(CATEGORY_LIST)
+
+  if (category === "all" || !allCategories.includes(category)) {
     redirect("/blog")
   }
 

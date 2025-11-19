@@ -1,18 +1,41 @@
 import { HiddenText } from "@/components/shared"
 import Link from "next/link"
 
-export type Category = "all" | "training" | "service" | "operation"
+export type Category = "all" | "training" | "service" | "operation" | "media"
+
+export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
+  {
+    all: {
+      label: "전체",
+      path: "/",
+    },
+    training: {
+      label: "훈련",
+      path: "/category/training",
+    },
+    service: {
+      label: "서비스",
+      path: "/category/service",
+    },
+    operation: {
+      label: "운영",
+      path: "/category/operation",
+    },
+    media: {
+      label: "미디어",
+      path: "/category/media",
+    },
+  }
 
 interface CategoryFiltersProps {
   currentCategory?: Category
 }
 
-const CATEGORIES: { key: Category; path: string; label: string }[] = [
-  { key: "all", path: "/", label: "전체" },
-  { key: "training", path: "/category/training", label: "훈련" },
-  { key: "service", path: "/category/service", label: "서비스" },
-  { key: "operation", path: "/category/operation", label: "운영" },
-]
+const CATEGORIES: { key: Category; path: string; label: string }[] =
+  Object.entries(CATEGORY_LIST).map(([key, value]) => ({
+    key: key as Category,
+    ...value,
+  }))
 
 export const CategoryFilters = ({
   currentCategory = "all",

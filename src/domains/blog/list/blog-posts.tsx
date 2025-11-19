@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio"
 import { filter } from "@prismicio/client"
-import { Category } from "./category-filters"
+import { Category, CATEGORY_LIST } from "./category-filters"
 import { BlogPostItem } from "./blog-post-item"
 
 interface BlogPostsProps {
@@ -10,18 +10,6 @@ interface BlogPostsProps {
 export const BlogPosts = async ({ filteredCategory }: BlogPostsProps) => {
   const client = createClient()
 
-  const formatCategory = (category: Category) => {
-    switch (category) {
-      case "service":
-        return "서비스"
-      case "training":
-        return "훈련"
-      case "operation":
-        return "운영"
-    }
-    return ""
-  }
-
   const options: {
     filters?: string[]
     graphQuery?: string
@@ -29,7 +17,7 @@ export const BlogPosts = async ({ filteredCategory }: BlogPostsProps) => {
 
   if (filteredCategory && filteredCategory !== "all") {
     options.filters = [
-      filter.at("my.blog_post.category", formatCategory(filteredCategory)),
+      filter.at("my.blog_post.category", CATEGORY_LIST[filteredCategory].label),
     ]
   }
 

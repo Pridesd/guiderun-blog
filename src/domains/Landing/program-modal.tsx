@@ -1,4 +1,4 @@
-import { getFormattedSeason, Program } from "./ProgramItem"
+import { getFormattedSeason, Program } from "./program-item"
 import {
   CloseButton,
   Description,
@@ -38,21 +38,23 @@ export const ProgramModal = ({
       className="relative z-50">
       <DialogBackdrop className="fixed inset-0 bg-black/60" />
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4">
+        <div className="flex min-h-full items-center justify-center p-4 text-center">
           <DialogPanel
             transition
-            className="animate-fade-in-opacity absolute top-1/2 left-1/2 z-[100] box-border min-h-[540px] w-[320px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] px-5 py-[3.75rem] md:h-full md:max-h-[90%] md:w-full md:max-w-[40%] md:px-[6.25rem] md:py-[7.5rem]">
+            className="animate-fade-in-opacity relative z-[100] box-border flex w-[320px] flex-col overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] md:h-auto md:max-h-[90vh] md:w-full md:max-w-[40%]">
             <div
               className="absolute inset-0 z-[101] bg-cover bg-center blur-[2px]"
               style={{ backgroundImage: `url(${program.image})` }}
             />
+
             <CloseButton
-              className="absolute top-[1rem] right-[1rem] z-[102] cursor-pointer rounded-full border-none p-2"
+              className="absolute top-[1rem] right-[1rem] z-[103] cursor-pointer rounded-full border-none p-2"
               onClick={onClose}>
               <Icon icon="Clear" width={25} alt="닫기" />
             </CloseButton>
-            <div className="relative z-[102] flex flex-col gap-[1.875rem] md:gap-[3.125rem]">
-              <div className="flex flex-col gap-4">
+
+            <div className="relative z-[102] flex flex-col gap-[1.875rem] overflow-y-auto px-5 py-[3.75rem] md:gap-[3.125rem] md:px-[6.25rem] md:py-[7.5rem]">
+              <div className="flex flex-col gap-4 text-left">
                 <div className="flex flex-col gap-2 md:gap-2.5">
                   <div className="flex gap-2 md:gap-4">
                     <span className="flex h-[18px] items-center justify-center rounded-[2px] bg-[#d2d2d2] px-[5px] py-[1px] text-sm font-normal text-[#b51f1f] md:h-[30px] md:text-xl">
@@ -87,9 +89,10 @@ export const ProgramModal = ({
               </div>
               <hr className="border-white" aria-hidden />
               {program.result && (
-                <div className="flex flex-col gap-3 md:gap-6">
+                <div className="flex flex-col gap-3 text-left md:gap-6">
                   <h2 className="text-xl font-bold text-white md:text-3xl">
-                    동계 훈련 참여 결과
+                    {program.season === "winter" ? "동계" : "하계"} 훈련 참여
+                    결과
                   </h2>
                   <div className="flex flex-col gap-[0.625rem] pl-[0.625rem] md:gap-4">
                     <span className="text-sm font-normal whitespace-break-spaces text-white md:text-lg">
