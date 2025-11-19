@@ -82,7 +82,6 @@ const PROGRAMS: Program[] = [
 신규 인원 :
 • 시각장애러너 참가자 31명 중 5명(16%)
 • 가이드러너 참가자 70명 중 18명(25%)`,
-    link: "https://docs.google.com/document/d/1Yk9ZxXo3b1y3b1n8n1N5Yk2O6Yz3Zz3ZzZzZzZzZzZz/edit?usp=sharing",
   },
 ]
 
