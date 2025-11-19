@@ -32,7 +32,7 @@
         "config": {
           "label": "Category",
           "placeholder": "해당 게시글이 속하는 카테고리를 선택해주세요",
-          "options": ["훈련", "서비스", "운영"],
+          "options": ["훈련", "서비스", "운영", "미디어"],
           "default_value": "훈련"
         }
       },
