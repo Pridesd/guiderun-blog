@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 
-import { GuideRunInfo } from "./GuideRun"
+import { GuideRunInfo } from "./guide-run"
 
 import { HiddenText, Icon } from "@/components/shared"
 

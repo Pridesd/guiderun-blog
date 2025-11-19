@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { GuideRunInfoBox } from "./GuideRunInfoBox"
+import { GuideRunInfoBox } from "./guide-run-info-box"
 
 import GuideRunImage from "@/assets/home/guiderun-background.png"
 

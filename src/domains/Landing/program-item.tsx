@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { ProgramModal } from "./ProgramModal"
+import { ProgramModal } from "./program-modal"
 
 export interface Program {
   name: string

@@ -1,4 +1,4 @@
-import { Program, ProgramItem } from "./ProgramItem"
+import { Program, ProgramItem } from "./program-item"
 
 import Summer2024 from "@/assets/home/2024-summer-background.png"
 import Winter2024 from "@/assets/home/2024-winter-background.png"

@@ -1,4 +1,4 @@
-import { getFormattedSeason, Program } from "./ProgramItem"
+import { getFormattedSeason, Program } from "./program-item"
 import {
   CloseButton,
   Description,
