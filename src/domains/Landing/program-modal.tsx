@@ -91,7 +91,8 @@ export const ProgramModal = ({
               {program.result && (
                 <div className="flex flex-col gap-3 text-left md:gap-6">
                   <h2 className="text-xl font-bold text-white md:text-3xl">
-                    동계 훈련 참여 결과
+                    {program.season === "winter" ? "동계" : "하계"} 훈련 참여
+                    결과
                   </h2>
                   <div className="flex flex-col gap-[0.625rem] pl-[0.625rem] md:gap-4">
                     <span className="text-sm font-normal whitespace-break-spaces text-white md:text-lg">
