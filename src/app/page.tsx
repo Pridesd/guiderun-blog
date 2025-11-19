@@ -9,7 +9,7 @@ import {
   Header,
   ProgramList,
   Together,
-} from "@/domains/Landing"
+} from "@/domains/landing"
 
 export default async function Home() {
   return (
