@@ -3,7 +3,7 @@ import Logo from "@/assets/head/logo.webp"
 import OGImage from "@/assets/head/og-image.jpg"
 import {
   Description,
-  Final,
+  RegisterGuiderun,
   GuideRun,
   Header,
   ProgramList,
@@ -19,7 +19,7 @@ export default async function Home() {
       <ProgramList />
       <Together />
       <GuideRun />
-      <Final />
+      <RegisterGuiderun />
       <Footer />
       <span className="top-9 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform text-lg font-thin md:absolute md:block">
         (c)Guiderun Project All Right Reserved.
