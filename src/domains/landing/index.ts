@@ -1,6 +1,5 @@
-export * from "./copyright"
 export * from "./description"
-export * from "./final"
+export * from "./register-guiderun"
 export * from "./guide-run"
 export * from "./header"
 export * from "./program-list"
