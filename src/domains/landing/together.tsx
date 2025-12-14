@@ -28,7 +28,7 @@ export const Together = () => {
           href="https://www.guiderun.org/event/all"
           target="_blank"
           className="flex h-[53px] items-center justify-center gap-1 rounded-full border-[1.5px] border-[#111] px-6 text-[#111] no-underline md:gap-5 md:p-11">
-          <span className="text-sm font-normal text-nowrap md:text-3xl">
+          <span className="text-sm font-normal text-nowrap md:text-2xl">
             GrP 이벤트 참여하기
           </span>
           <DynamicIcon icon="ArrowRight" alt="" desktopWidth={30} />
@@ -36,7 +36,7 @@ export const Together = () => {
         <Link
           href="https://about.guiderun.org/blog"
           className="flex items-center gap-1.5 border-b border-[#111]">
-          <span className="text-xs font-normal whitespace-break-spaces md:text-lg md:whitespace-nowrap lg:text-3xl">
+          <span className="text-xs font-normal whitespace-break-spaces md:text-lg md:whitespace-nowrap lg:text-2xl">
             {`GrP의 이야기가\n궁금하다면?`}
           </span>
           <DynamicIcon icon="ArrowRight" alt="" desktopWidth={20} />
