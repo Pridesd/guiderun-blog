@@ -1,4 +1,3 @@
-export * from "./copyright"
 export * from "./description"
 export * from "./final"
 export * from "./guide-run"
