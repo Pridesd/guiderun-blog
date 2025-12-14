@@ -66,6 +66,10 @@ const CONTENTS: GuideRunInfo[] = [
 export const GuideRun = () => {
   const [currentOpen, setCurrentOpen] = useState(-1)
 
+  const isOpen = currentOpen !== -1
+
+  const textColor = isOpen ? "text-[#5a5a5a]" : "text-white"
+
   return (
     <div className="relative min-h-[825px] w-full bg-[#111] md:min-h-[800px] lg:min-h-[1000px]">
       <div
@@ -75,21 +79,27 @@ export const GuideRun = () => {
           backgroundImage: `url(${GuideRunImage.src})`,
         }}
       />
+      {isOpen && (
+        <div className="absolute inset-0 bg-[#111] opacity-70" aria-hidden />
+      )}
       <div className="absolute top-[270px] left-[80px] flex flex-col gap-4 md:top-[120px] md:left-[100px]">
-        <h2 className="text-[0.8125rem] font-bold text-white md:text-base">
+        <h2
+          className={`text-[0.8125rem] font-bold md:text-base ${textColor} transition-colors duration-200`}>
           가이드런 프로젝트
         </h2>
-        <span className="text-lg font-bold whitespace-break-spaces text-white md:hidden">
+        <span
+          className={`text-lg font-bold whitespace-break-spaces ${textColor} transition-colors duration-200 md:hidden`}>
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는
 새로운 달리기 문화입니다.`}
         </span>
-        <span className="hidden font-bold whitespace-break-spaces text-white md:inline md:text-4xl md:leading-[52px]">
+        <span
+          className={`hidden font-bold whitespace-break-spaces ${textColor} transition-colors duration-200 md:inline md:text-4xl md:leading-[52px]`}>
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는 새로운 달리기 문화입니다.`}
         </span>
       </div>
-      <div className="flex flex-col gap-4 px-5 pt-[477.5px] pb-8 md:absolute md:right-[80px] md:bottom-[100px] md:left-0 md:p-0">
+      <div className="relative z-10 flex flex-col gap-4 px-5 pt-[477.5px] pb-8 md:absolute md:right-[80px] md:bottom-[100px] md:left-0 md:p-0">
         {CONTENTS.map((info, index) => (
           <GuideRunInfoBox
             key={info.title}
