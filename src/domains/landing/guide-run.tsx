@@ -63,10 +63,12 @@ const CONTENTS: GuideRunInfo[] = [
   },
 ]
 
-export const GuideRun = () => {
-  const [currentOpen, setCurrentOpen] = useState(-1)
+const NO_OPEN = null
 
-  const isOpen = currentOpen !== -1
+export const GuideRun = () => {
+  const [currentOpen, setCurrentOpen] = useState<number | null>(NO_OPEN)
+
+  const isOpen = currentOpen !== NO_OPEN
 
   const textColor = isOpen ? "text-[#5a5a5a]" : "text-white"
 
@@ -80,7 +82,11 @@ export const GuideRun = () => {
         }}
       />
       {isOpen && (
-        <div className="absolute inset-0 bg-[#111] opacity-70" aria-hidden />
+        <div
+          className="absolute inset-0 bg-[#111] opacity-70"
+          role="presentation"
+          aria-hidden
+        />
       )}
       <div className="absolute top-[270px] left-[80px] flex flex-col gap-4 md:top-[120px] md:left-[100px]">
         <h2
@@ -88,13 +94,7 @@ export const GuideRun = () => {
           가이드런 프로젝트
         </h2>
         <span
-          className={`text-lg font-bold whitespace-break-spaces ${textColor} transition-colors duration-200 md:hidden`}>
-          {`가이드러닝은 신체적 건강 뿐만 아니라
-정신적으로도 성장하는
-새로운 달리기 문화입니다.`}
-        </span>
-        <span
-          className={`hidden font-bold whitespace-break-spaces ${textColor} transition-colors duration-200 md:inline md:text-4xl md:leading-[52px]`}>
+          className={`text-lg font-bold whitespace-break-spaces ${textColor} transition-colors duration-200 md:text-4xl md:leading-[52px]`}>
           {`가이드러닝은 신체적 건강 뿐만 아니라
 정신적으로도 성장하는 새로운 달리기 문화입니다.`}
         </span>
@@ -107,7 +107,7 @@ export const GuideRun = () => {
             open={index === currentOpen}
             onChangeOpen={() => {
               if (index === currentOpen) {
-                setCurrentOpen(-1)
+                setCurrentOpen(NO_OPEN)
                 return
               }
               setCurrentOpen(index)
