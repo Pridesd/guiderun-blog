@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <meta
         name="naver-site-verification"
         content="47de70dfa433bbe55ca07e7afaf7ac1ec890afbd"
