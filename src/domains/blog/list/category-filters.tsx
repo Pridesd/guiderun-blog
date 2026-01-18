@@ -1,7 +1,13 @@
 import { HiddenText } from "@/components/shared"
 import Link from "next/link"
 
-export type Category = "all" | "training" | "service" | "operation" | "media"
+export type Category =
+  | "all"
+  | "training"
+  | "service"
+  | "operation"
+  | "media"
+  | "race"
 
 export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
   {
@@ -16,6 +22,10 @@ export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
     service: {
       label: "서비스",
       path: "/category/service",
+    },
+    race: {
+      label: "대회",
+      path: "/category/race",
     },
     operation: {
       label: "운영",
