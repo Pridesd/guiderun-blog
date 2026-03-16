@@ -108,7 +108,7 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
   category: prismic.SelectField<
-    "훈련" | "서비스" | "운영" | "미디어" | "대회",
+    "훈련" | "서비스" | "운영" | "미디어" | "대회" | "GrP 사람들",
     "filled"
   >
 
