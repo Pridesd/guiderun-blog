@@ -8,6 +8,7 @@ export type Category =
   | "operation"
   | "media"
   | "race"
+  | "people"
 
 export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
   {
@@ -18,6 +19,10 @@ export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
     training: {
       label: "훈련",
       path: "/category/training",
+    },
+    people: {
+      label: "GrP 사람들",
+      path: "/category/people",
     },
     service: {
       label: "서비스",
