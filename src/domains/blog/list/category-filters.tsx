@@ -20,10 +20,6 @@ export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
       label: "훈련",
       path: "/category/training",
     },
-    people: {
-      label: "GrP 사람들",
-      path: "/category/people",
-    },
     service: {
       label: "서비스",
       path: "/category/service",
@@ -35,6 +31,10 @@ export const CATEGORY_LIST: Record<Category, { path: string; label: string }> =
     operation: {
       label: "운영",
       path: "/category/operation",
+    },
+    people: {
+      label: "GrP 사람들",
+      path: "/category/people",
     },
     media: {
       label: "미디어",
