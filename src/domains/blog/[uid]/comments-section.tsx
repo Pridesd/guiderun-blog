@@ -106,6 +106,16 @@ function persistOwnedCommentIds(postId: string, commentIds: string[]) {
   return nextCommentIds
 }
 
+function replaceCommentId(
+  commentIds: string[],
+  previousId: string,
+  nextId: string
+) {
+  return commentIds.map((commentId) =>
+    commentId === previousId ? nextId : commentId
+  )
+}
+
 export const CommentsSection = ({ id }: CommentsSectionProps) => {
   const commentsEndpoint = `/api/posts/${id}/comments`
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -225,48 +235,134 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
 
     try {
       const payload = validateCommentInput({ author, content })
+      const formSnapshot = { author, content }
 
       setIsSubmitting(true)
       setFormError(null)
 
       if (editingCommentId) {
-        const response = await axios.patch<UpdateCommentResponse>(
-          `${commentsEndpoint}/${editingCommentId}`,
+        const previousComments = comments
+        const originalComment = comments.find(
+          (comment) => comment.id === editingCommentId
+        )
+
+        if (!originalComment) {
+          throw new Error("댓글을 찾을 수 없습니다.")
+        }
+
+        const optimisticComment: BlogComment = {
+          ...originalComment,
+          author: payload.author,
+          content: payload.content,
+          updatedAt: new Date().toISOString(),
+        }
+
+        setComments((prevComments) =>
+          sortCommentsByNewest(
+            prevComments.map((comment) =>
+              comment.id === editingCommentId ? optimisticComment : comment
+            )
+          )
+        )
+        resetForm()
+        announce("댓글을 저장하고 있습니다.")
+
+        try {
+          const response = await axios.patch<UpdateCommentResponse>(
+            `${commentsEndpoint}/${editingCommentId}`,
+            payload
+          )
+
+          setComments((prevComments) =>
+            sortCommentsByNewest(
+              prevComments.map((comment) =>
+                comment.id === editingCommentId
+                  ? response.data.comment
+                  : comment
+              )
+            )
+          )
+          setPendingFocusCommentId(response.data.comment.id)
+          announce("댓글이 수정되었습니다.")
+        } catch (error) {
+          const message = getErrorMessage(error)
+
+          setComments(previousComments)
+          setEditingCommentId(originalComment.id)
+          setAuthor(formSnapshot.author)
+          setContent(formSnapshot.content)
+          setFormError(message)
+          announce(message, "assertive")
+          requestFormFocus("content")
+        } finally {
+          setIsSubmitting(false)
+        }
+
+        return
+      }
+
+      const previousComments = comments
+      const previousOwnedCommentIds = ownedCommentIds
+      const optimisticCommentId = `temp-${crypto.randomUUID()}`
+      const nextCommentCount = comments.length + 1
+      const optimisticComment: BlogComment = {
+        id: optimisticCommentId,
+        postId: id,
+        author: payload.author,
+        content: payload.content,
+        createdAt: new Date().toISOString(),
+        updatedAt: null,
+      }
+
+      setComments((prevComments) =>
+        sortCommentsByNewest([optimisticComment, ...prevComments])
+      )
+      setOwnedCommentIds((prevCommentIds) =>
+        persistOwnedCommentIds(id, [...prevCommentIds, optimisticCommentId])
+      )
+      resetForm()
+      requestFormFocus("content")
+      announce("댓글을 저장하고 있습니다.")
+
+      try {
+        const response = await axios.post<CreateCommentResponse>(
+          commentsEndpoint,
           payload
         )
 
         setComments((prevComments) =>
           sortCommentsByNewest(
             prevComments.map((comment) =>
-              comment.id === editingCommentId ? response.data.comment : comment
+              comment.id === optimisticCommentId
+                ? response.data.comment
+                : comment
             )
           )
         )
-        setPendingFocusCommentId(response.data.comment.id)
-        announce("댓글이 수정되었습니다.")
-        resetForm()
-        return
+        setOwnedCommentIds((prevCommentIds) =>
+          persistOwnedCommentIds(
+            id,
+            replaceCommentId(
+              prevCommentIds,
+              optimisticCommentId,
+              response.data.comment.id
+            )
+          )
+        )
+        announce(
+          `댓글이 등록되었습니다. 현재 댓글은 ${nextCommentCount}개입니다.`
+        )
+      } catch (error) {
+        const message = getErrorMessage(error)
+
+        setComments(previousComments)
+        setOwnedCommentIds(persistOwnedCommentIds(id, previousOwnedCommentIds))
+        setAuthor(formSnapshot.author)
+        setContent(formSnapshot.content)
+        setFormError(message)
+        announce(message, "assertive")
+        requestFormFocus("content")
       }
-
-      const response = await axios.post<CreateCommentResponse>(
-        commentsEndpoint,
-        payload
-      )
-
-      setComments((prevComments) =>
-        sortCommentsByNewest([response.data.comment, ...prevComments])
-      )
-      setOwnedCommentIds((prevCommentIds) =>
-        persistOwnedCommentIds(id, [
-          ...prevCommentIds,
-          response.data.comment.id,
-        ])
-      )
-      setPendingFocusCommentId(response.data.comment.id)
-      announce(
-        `댓글이 등록되었습니다. 현재 댓글은 ${comments.length + 1}개입니다.`
-      )
-      resetForm()
     } catch (error) {
       if (error instanceof CommentValidationError) {
         setFormError(error.message)
@@ -299,13 +395,18 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
       return
     }
 
+    const previousComments = comments
+    const previousOwnedCommentIds = ownedCommentIds
+    const deletedComment = comments.find((comment) => comment.id === commentId)
+    const wasEditingComment = editingCommentId === commentId
+
+    if (!deletedComment) {
+      announce("댓글을 찾을 수 없습니다.", "assertive")
+      return
+    }
+
     try {
       setPendingDeleteId(commentId)
-
-      await axios.delete<DeleteCommentResponse>(
-        `${commentsEndpoint}/${commentId}`
-      )
-
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.id !== commentId)
       )
@@ -317,16 +418,36 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
           )
         )
       )
-      announce(
-        `댓글이 삭제되었습니다. 현재 댓글은 ${Math.max(0, comments.length - 1)}개입니다.`
-      )
-      headingRef.current?.focus()
 
-      if (editingCommentId === commentId) {
+      if (wasEditingComment) {
         resetForm()
       }
+      headingRef.current?.focus()
+      announce("댓글을 삭제하고 있습니다.")
+
+      await axios.delete<DeleteCommentResponse>(
+        `${commentsEndpoint}/${commentId}`
+      )
+
+      announce(
+        `댓글이 삭제되었습니다. 현재 댓글은 ${Math.max(0, previousComments.length - 1)}개입니다.`
+      )
     } catch (error) {
-      announce(getErrorMessage(error), "assertive")
+      const message = getErrorMessage(error)
+
+      setComments(previousComments)
+      setOwnedCommentIds(persistOwnedCommentIds(id, previousOwnedCommentIds))
+
+      if (wasEditingComment) {
+        setEditingCommentId(deletedComment.id)
+        setAuthor(deletedComment.author)
+        setContent(deletedComment.content)
+        requestFormFocus("content")
+      } else {
+        setPendingFocusCommentId(deletedComment.id)
+      }
+
+      announce(message, "assertive")
     } finally {
       setPendingDeleteId(null)
     }
