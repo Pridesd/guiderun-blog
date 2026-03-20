@@ -1,3 +1,5 @@
+export * from "./comment-types"
+export * from "./comments-section"
 export * from "./guiderun-link"
 export * from "./like-button"
 export * from "./team-profile"
