@@ -2,6 +2,7 @@ import type { BlogComment } from "./comment-types"
 
 interface CommentItemProps {
   comment: BlogComment
+  elementId: string
   isOwned: boolean
   isActionDisabled: boolean
   isDeleting: boolean
@@ -28,6 +29,7 @@ function formatCommentDate(value: string) {
 
 export const CommentItem = ({
   comment,
+  elementId,
   isOwned,
   isActionDisabled,
   isDeleting,
@@ -37,7 +39,10 @@ export const CommentItem = ({
   const formattedDate = formatCommentDate(comment.createdAt)
 
   return (
-    <li className="py-5 first:pt-0 last:pb-0">
+    <li
+      id={elementId}
+      tabIndex={-1}
+      className="py-5 outline-none first:pt-0 last:pb-0 focus:outline-2 focus:outline-offset-2 focus:outline-gray-900">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
@@ -56,14 +61,16 @@ export const CommentItem = ({
           <div className="flex shrink-0 items-center gap-3 text-sm">
             <button
               type="button"
-              className="text-gray-500 transition-colors hover:text-gray-800 disabled:cursor-not-allowed disabled:text-gray-300"
+              aria-label={`${comment.author} 댓글 수정`}
+              className="text-gray-500 transition-colors outline-none hover:text-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:cursor-not-allowed disabled:text-gray-300"
               onClick={() => onEdit(comment)}
               disabled={isActionDisabled}>
               수정
             </button>
             <button
               type="button"
-              className="text-gray-500 transition-colors hover:text-gray-800 disabled:cursor-not-allowed disabled:text-gray-300"
+              aria-label={`${comment.author} 댓글 삭제`}
+              className="text-gray-500 transition-colors outline-none hover:text-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:cursor-not-allowed disabled:text-gray-300"
               onClick={() => onDelete(comment.id)}
               disabled={isActionDisabled}>
               {isDeleting ? "삭제 중..." : "삭제"}

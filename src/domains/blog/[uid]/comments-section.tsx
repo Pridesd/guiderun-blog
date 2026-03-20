@@ -2,7 +2,7 @@
 
 import axios from "axios"
 import type { FormEvent } from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { CommentForm } from "./comment-form"
 import { CommentItem } from "./comment-item"
@@ -24,6 +24,12 @@ import {
 
 interface CommentsSectionProps {
   id: string
+}
+
+type Announcement = {
+  id: number
+  politeness: "polite" | "assertive"
+  message: string
 }
 
 function getErrorMessage(error: unknown) {
@@ -102,6 +108,7 @@ function persistOwnedCommentIds(postId: string, commentIds: string[]) {
 
 export const CommentsSection = ({ id }: CommentsSectionProps) => {
   const commentsEndpoint = `/api/posts/${id}/comments`
+  const headingRef = useRef<HTMLHeadingElement>(null)
 
   const [comments, setComments] = useState<BlogComment[]>([])
   const [author, setAuthor] = useState(DEFAULT_COMMENT_AUTHOR)
@@ -114,6 +121,40 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
+  const [focusRequestToken, setFocusRequestToken] = useState(0)
+  const [focusTarget, setFocusTarget] = useState<"author" | "content" | null>(
+    null
+  )
+  const [pendingFocusCommentId, setPendingFocusCommentId] = useState<
+    string | null
+  >(null)
+  const [announcement, setAnnouncement] = useState<Announcement | null>(null)
+
+  const authorErrorMessage = formError?.startsWith("작성자는")
+    ? formError
+    : null
+  const contentErrorMessage =
+    formError === "댓글 내용을 입력해주세요." || formError?.startsWith("댓글은")
+      ? formError
+      : null
+  const generalErrorMessage =
+    formError && !authorErrorMessage && !contentErrorMessage ? formError : null
+
+  const announce = (
+    message: string,
+    politeness: Announcement["politeness"] = "polite"
+  ) => {
+    setAnnouncement({
+      id: Date.now(),
+      politeness,
+      message,
+    })
+  }
+
+  const requestFormFocus = (target: "author" | "content") => {
+    setFocusTarget(target)
+    setFocusRequestToken((prevToken) => prevToken + 1)
+  }
 
   const resetForm = () => {
     setAuthor(DEFAULT_COMMENT_AUTHOR)
@@ -121,6 +162,22 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
     setEditingCommentId(null)
     setFormError(null)
   }
+
+  useEffect(() => {
+    if (!pendingFocusCommentId) {
+      return
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      document.getElementById(`comment-item-${pendingFocusCommentId}`)?.focus()
+    })
+
+    setPendingFocusCommentId(null)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [comments, pendingFocusCommentId])
 
   useEffect(() => {
     setOwnedCommentIds(readOwnedCommentMap()[id] ?? [])
@@ -141,7 +198,9 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
         }
       } catch (error) {
         if (!isCancelled) {
-          setLoadError(getErrorMessage(error))
+          const message = getErrorMessage(error)
+          setLoadError(message)
+          announce(message, "assertive")
         }
       } finally {
         if (!isCancelled) {
@@ -183,6 +242,8 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
             )
           )
         )
+        setPendingFocusCommentId(response.data.comment.id)
+        announce("댓글이 수정되었습니다.")
         resetForm()
         return
       }
@@ -201,12 +262,23 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
           response.data.comment.id,
         ])
       )
+      setPendingFocusCommentId(response.data.comment.id)
+      announce(
+        `댓글이 등록되었습니다. 현재 댓글은 ${comments.length + 1}개입니다.`
+      )
       resetForm()
     } catch (error) {
       if (error instanceof CommentValidationError) {
         setFormError(error.message)
+        announce(error.message, "assertive")
+        requestFormFocus(
+          error.message.startsWith("작성자는") ? "author" : "content"
+        )
       } else {
-        setFormError(getErrorMessage(error))
+        const message = getErrorMessage(error)
+        setFormError(message)
+        announce(message, "assertive")
+        requestFormFocus("content")
       }
     } finally {
       setIsSubmitting(false)
@@ -218,6 +290,8 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
     setAuthor(comment.author)
     setContent(comment.content)
     setFormError(null)
+    requestFormFocus("content")
+    announce(`${comment.author} 댓글 수정 모드입니다.`)
   }
 
   const handleDelete = async (commentId: string) => {
@@ -243,12 +317,16 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
           )
         )
       )
+      announce(
+        `댓글이 삭제되었습니다. 현재 댓글은 ${Math.max(0, comments.length - 1)}개입니다.`
+      )
+      headingRef.current?.focus()
 
       if (editingCommentId === commentId) {
         resetForm()
       }
     } catch (error) {
-      alert(getErrorMessage(error))
+      announce(getErrorMessage(error), "assertive")
     } finally {
       setPendingDeleteId(null)
     }
@@ -261,22 +339,37 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
     author.trim().length > COMMENT_AUTHOR_MAX_LENGTH
 
   return (
-    <section className="px-6 pb-10">
+    <section
+      className="px-6 pb-10"
+      aria-busy={isLoading || isSubmitting || pendingDeleteId !== null}>
+      {announcement && (
+        <p
+          key={announcement.id}
+          className="sr-only"
+          aria-live={announcement.politeness}
+          aria-atomic="true">
+          {announcement.message}
+        </p>
+      )}
       <div className="mb-5">
-        <h2 className="text-[1.625rem] font-bold text-gray-900">
+        <h2
+          ref={headingRef}
+          tabIndex={-1}
+          className="text-[1.625rem] font-bold text-gray-900 outline-none focus:outline-2 focus:outline-offset-2 focus:outline-gray-900">
           댓글 {comments.length}
         </h2>
-        <p className="mt-2 text-sm text-gray-500">
-          서로를 존중하는 댓글을 남겨주세요.
-        </p>
       </div>
       <CommentForm
         author={author}
         content={content}
-        errorMessage={formError}
+        authorErrorMessage={authorErrorMessage}
+        contentErrorMessage={contentErrorMessage}
+        generalErrorMessage={generalErrorMessage}
         isEditing={editingCommentId !== null}
         isSubmitDisabled={isSubmitDisabled}
         isSubmitting={isSubmitting}
+        focusTarget={focusTarget}
+        focusRequestToken={focusRequestToken}
         onAuthorChange={setAuthor}
         onContentChange={setContent}
         onCancelEdit={resetForm}
@@ -288,7 +381,7 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
             <p>{loadError}</p>
             <button
               type="button"
-              className="mt-3 font-semibold underline underline-offset-4"
+              className="mt-3 font-semibold underline underline-offset-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
               onClick={() => setReloadToken((prevToken) => prevToken + 1)}>
               다시 시도
             </button>
@@ -301,11 +394,12 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
           <p className="py-6 text-sm text-gray-400">첫 댓글을 남겨보세요.</p>
         )}
         {comments.length > 0 && (
-          <ul className="divide-y divide-gray-200">
+          <ul className="divide-y divide-gray-200" aria-label="댓글 목록">
             {comments.map((comment) => (
               <CommentItem
                 key={comment.id}
                 comment={comment}
+                elementId={`comment-item-${comment.id}`}
                 isOwned={ownedCommentIds.includes(comment.id)}
                 isActionDisabled={isSubmitting || pendingDeleteId !== null}
                 isDeleting={pendingDeleteId === comment.id}
