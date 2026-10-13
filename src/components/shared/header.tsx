@@ -15,8 +15,14 @@ const NAVIGATIONS: { path: string; label: string }[] = [
   },
 ]
 
-export const Header = () => {
+interface HeaderProps {
+  /** landing: 블러 배경이 스크롤에 맞춰 나타나고, 로고가 히어로에서 헤더 자리로 이동한다 (useLogoDock) */
+  variant?: "default" | "landing"
+}
+
+export const Header = ({ variant = "default" }: HeaderProps) => {
   const pathname = usePathname()
+  const isLanding = variant === "landing"
 
   const checkCurrentPath = (path: string, checkStartWith: boolean = false) => {
     if (checkStartWith) {
@@ -27,12 +33,18 @@ export const Header = () => {
   }
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-10 flex items-center justify-between bg-[#fff] p-5">
-      <Link href="/">
+    <header
+      className={`fixed top-0 right-0 left-0 flex items-center justify-between p-5 ${isLanding ? "landing-header z-40" : "z-10"}`}>
+      <div
+        aria-hidden
+        className={`absolute inset-0 -z-10 bg-white/70 backdrop-blur-md ${isLanding ? "landing-header-bg" : ""}`}
+      />
+      <Link href="/" data-logo-slot>
         <Icon
           icon="TextLogo"
           alt="가이드런 프로젝트"
-          className="w-[111px] md:w-[222px]"
+          priority
+          className={`w-[111px] md:w-[222px] ${isLanding ? "landing-header-logo" : ""}`}
         />
       </Link>
       <nav className="flex items-center justify-end gap-3 lg:gap-[3.75rem]">
@@ -45,7 +57,7 @@ export const Header = () => {
                 : undefined
             }
             href={navi.path}
-            className={`border-b-2 font-medium lg:text-[1.25rem] ${checkCurrentPath(navi.path, navi.label === "Blog") ? "border-b-black" : "border-b-[#fff]"} hover:border-b-black`}>
+            className={`border-b-2 font-medium lg:text-[1.25rem] ${checkCurrentPath(navi.path, navi.label === "Blog") ? "border-b-black" : "border-b-transparent"} hover:border-b-black`}>
             {navi.label}
           </Link>
         ))}
