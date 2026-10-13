@@ -73,7 +73,7 @@ export const GuideRun = () => {
   const textColor = isOpen ? "text-[#5a5a5a]" : "text-white"
 
   return (
-    <div className="relative min-h-[825px] w-full bg-[#111] md:min-h-[800px] lg:min-h-[1000px]">
+    <div className="relative min-h-[825px] w-full bg-[#111] md:min-h-[1000px]">
       <div
         aria-hidden
         className="bg-100px_center absolute inset-0 bg-cover md:bg-center"
@@ -88,7 +88,7 @@ export const GuideRun = () => {
           aria-hidden
         />
       )}
-      <div className="absolute top-[270px] left-[80px] flex flex-col gap-4 md:top-[120px] md:left-[100px]">
+      <div className="absolute top-[270px] right-5 left-[80px] flex flex-col gap-4 md:top-[120px] md:left-[100px]">
         <h2
           className={`text-[0.8125rem] font-bold md:text-base ${textColor} transition-colors duration-200`}>
           가이드런 프로젝트

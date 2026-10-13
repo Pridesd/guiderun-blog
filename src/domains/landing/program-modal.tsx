@@ -28,6 +28,10 @@ export const ProgramModal = ({
 
   const titleId = `program-${program.year}-${program.season}-title`
   const descriptionId = `program-${program.year}-${program.season}-description`
+  const resultTitle =
+    program.season === "special"
+      ? "특별훈련 참여 결과"
+      : `${getFormattedSeason(program.season)} 훈련 참여 결과`
 
   return (
     <Dialog
@@ -41,7 +45,7 @@ export const ProgramModal = ({
         <div className="flex min-h-full items-center justify-center p-4 text-center">
           <DialogPanel
             transition
-            className="animate-fade-in-opacity relative z-[100] box-border flex w-[320px] flex-col overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] md:h-auto md:max-h-[90vh] md:w-full md:max-w-[40%]">
+            className="animate-fade-in-opacity relative z-[100] box-border flex w-[320px] flex-col overflow-hidden rounded-[8px] bg-[rgba(255,255,255,0.1)] break-keep md:h-auto md:max-h-[90vh] md:w-full md:max-w-[max(640px,40%)]">
             <div
               className="absolute inset-0 z-[101] bg-cover bg-center blur-[2px]"
               style={{ backgroundImage: `url(${program.image})` }}
@@ -95,8 +99,7 @@ export const ProgramModal = ({
               {program.result && (
                 <div className="flex flex-col gap-3 text-left md:gap-6">
                   <h2 className="text-xl font-bold text-white md:text-3xl">
-                    {program.season === "winter" ? "동계" : "하계"} 훈련 참여
-                    결과
+                    {resultTitle}
                   </h2>
                   <div className="flex flex-col gap-[0.625rem] pl-[0.625rem] md:gap-4">
                     <span className="text-sm font-normal whitespace-break-spaces text-white md:text-lg">
