@@ -5,16 +5,17 @@ import {
   Description,
   RegisterGuiderun,
   GuideRun,
-  Header,
+  Hero,
   ProgramList,
   Together,
 } from "@/domains/landing"
-import { Footer } from "@/components/shared"
+import { Footer, Header } from "@/components/shared"
 
 export default async function Home() {
   return (
     <div className="mx-auto w-full">
-      <Header />
+      <Header variant="landing" />
+      <Hero />
       <Description />
       <ProgramList />
       <Together />

@@ -1,6 +1,6 @@
 export * from "./description"
 export * from "./register-guiderun"
 export * from "./guide-run"
-export * from "./header"
+export * from "./hero"
 export * from "./program-list"
 export * from "./together"

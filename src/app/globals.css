@@ -40,6 +40,106 @@
   }
 }
 
+/* 랜딩 헤더: 스크롤 0 → 400px 동안 로고가 히어로 자리에서 헤더 자리로 이동한다.
+   끝 상태가 transform: none 이라 다른 페이지 헤더와 위치가 항상 같다.
+   --logo-dx / --logo-dy / --logo-scale 은 useLogoDock 이 측정해서 :root 에 넣는다. */
+@keyframes logo-dock {
+  from {
+    transform: translate(var(--logo-dx, 0px), var(--logo-dy, 0px))
+      scale(var(--logo-scale, 1));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes header-bg-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 태그라인은 로고와 같은 경로로 따라가며 줄어들고 사라진다.
+   태그라인은 문서 흐름에 있어 스크롤만큼 이미 올라가므로 그 400px 은 빼 준다. */
+@keyframes tagline-out {
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+    transform: translate(
+        calc(var(--logo-dx, 0px) * -1),
+        calc(400px - var(--logo-dy, 0px))
+      )
+      scale(0);
+  }
+}
+
+/* 기본값은 scroll-driven animation 미지원 브라우저용.
+   멈춰 둔 애니메이션을 useLogoDock 이 스크롤 위치로 감는다 (1ms = 1px). */
+.landing-header-logo {
+  transform-origin: 0 0;
+  opacity: 0;
+  translate: 0 60px;
+  transition:
+    opacity 0.7s,
+    translate 1s ease-out;
+  animation: logo-dock 400ms linear both paused;
+}
+
+.landing-header[data-logo-ready] .landing-header-logo {
+  opacity: 1;
+  translate: none;
+}
+
+.landing-header-bg {
+  animation: header-bg-in 100ms 300ms linear both paused;
+}
+
+.landing-tagline {
+  animation: tagline-out 400ms linear both paused;
+}
+
+.landing-logo-placeholder {
+  opacity: 0;
+}
+
+@supports (animation-timeline: scroll()) {
+  .landing-header-logo {
+    animation: logo-dock linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 400px;
+  }
+
+  .landing-header-bg {
+    animation: header-bg-in linear both;
+    animation-timeline: scroll(root);
+    animation-range: 300px 400px;
+  }
+
+  .landing-tagline {
+    animation: tagline-out linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 400px;
+  }
+}
+
+/* 모션 최소화: 로고는 헤더에 두고, 히어로에는 큰 로고를 그대로 보여준다. */
+@media (prefers-reduced-motion: reduce) {
+  .landing-header-logo,
+  .landing-tagline {
+    animation: none;
+    transition: none;
+  }
+
+  .landing-logo-placeholder {
+    opacity: 1;
+  }
+}
+
 .bg-100px_center {
   @media (width < 48rem /* 768px */) {
     background-position: -350px center;
