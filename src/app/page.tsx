@@ -13,7 +13,7 @@ import { Footer, Header } from "@/components/shared"
 
 export default async function Home() {
   return (
-    <div className="mx-auto w-full">
+    <div className="mx-auto w-full break-keep">
       <Header variant="landing" />
       <Hero />
       <Description />

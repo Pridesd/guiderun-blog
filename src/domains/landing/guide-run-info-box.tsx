@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useId } from "react"
 
 import { GuideRunInfo } from "./guide-run"
 
@@ -20,7 +20,7 @@ export const GuideRunInfoBox = ({
   const contentRef = useRef<HTMLDivElement>(null)
   const [contentHeight, setContentHeight] = useState(0)
 
-  const contentId = `guiderun-content-${info.link}`
+  const contentId = useId()
 
   useEffect(() => {
     if (open && contentRef.current) {
