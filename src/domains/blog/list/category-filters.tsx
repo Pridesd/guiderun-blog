@@ -58,7 +58,7 @@ export const CategoryFilters = ({
   return (
     <div
       id="_category"
-      className="scrollbar-hide flex items-center gap-2 overflow-y-auto md:px-10">
+      className="scrollbar-hide relative flex items-center gap-2 overflow-y-auto md:px-10">
       {CATEGORIES.map((category) => (
         <Link
           key={category.key}
