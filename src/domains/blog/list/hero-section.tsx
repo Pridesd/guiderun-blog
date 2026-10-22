@@ -24,16 +24,16 @@ const HERO_IMAGES = [
   },
 ]
 
-export const HeroSection = () => {
-  const heroIndex = Math.floor(Math.random() * 4)
+const HERO_INDEX = Math.floor(Math.random() * HERO_IMAGES.length)
 
-  console.log(heroIndex)
+export const HeroSection = () => {
+  const heroImage = HERO_IMAGES[HERO_INDEX]
 
   return (
     <div className="flex flex-col items-center gap-[1.75rem] pt-[5.5rem] pb-[5.25rem] md:gap-[2.75rem] md:pt-[6.5rem]">
       <Image
-        src={HERO_IMAGES[heroIndex].image}
-        alt={HERO_IMAGES[heroIndex].alt}
+        src={heroImage.image}
+        alt={heroImage.alt}
         className="w-full rounded-3xl md:w-[70%]"
       />
       <h1 className="flex flex-col items-center gap-3">

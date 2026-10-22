@@ -123,7 +123,9 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
   const [comments, setComments] = useState<BlogComment[]>([])
   const [author, setAuthor] = useState(DEFAULT_COMMENT_AUTHOR)
   const [content, setContent] = useState("")
-  const [ownedCommentIds, setOwnedCommentIds] = useState<string[]>([])
+  const [ownedCommentIds, setOwnedCommentIds] = useState<string[]>(
+    () => readOwnedCommentMap()[id] ?? []
+  )
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [loadError, setLoadError] = useState<string | null>(null)
@@ -180,18 +182,13 @@ export const CommentsSection = ({ id }: CommentsSectionProps) => {
 
     const frameId = window.requestAnimationFrame(() => {
       document.getElementById(`comment-item-${pendingFocusCommentId}`)?.focus()
+      setPendingFocusCommentId(null)
     })
-
-    setPendingFocusCommentId(null)
 
     return () => {
       window.cancelAnimationFrame(frameId)
     }
   }, [comments, pendingFocusCommentId])
-
-  useEffect(() => {
-    setOwnedCommentIds(readOwnedCommentMap()[id] ?? [])
-  }, [id])
 
   useEffect(() => {
     let isCancelled = false
