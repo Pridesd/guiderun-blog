@@ -62,7 +62,7 @@ export default async function BlogDetailPage({
           <div className="px-6 pb-6">
             <LikeButton id={uid} />
           </div>
-          <CommentsSection id={uid} />
+          <CommentsSection key={uid} id={uid} />
           <GuiderunLink />
           <TeamProfile />
           <div className="flex justify-center">

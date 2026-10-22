@@ -6,10 +6,10 @@
   "author": "Prismic <contact@prismic.io> (https://prismic.io)",
   "scripts": {
     "dev": "concurrently \"npm:next:dev\" \"npm:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
-    "next:dev": "next dev --turbopack",
+    "next:dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "slicemachine": "start-slicemachine",
     "format": "prettier --write ."
   },
@@ -22,23 +22,22 @@
     "axios": "^1.13.1",
     "google-auth-library": "^10.5.0",
     "google-spreadsheet": "^5.0.2",
-    "next": "^15.1.11",
+    "next": "16.4.2",
     "postcss": "^8.5.3",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "tailwind-scrollbar-hide": "^2.0.0",
     "tailwindcss": "^4.0.17"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@slicemachine/adapter-next": "^0.3.81",
-    "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.13.0",
-    "@types/react": "^19.2.4",
-    "@types/react-dom": "^19.2.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "concurrently": "^9.1.2",
-    "eslint": "^9.19.0",
-    "eslint-config-next": "^15.1.11",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.2",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "slice-machine-ui": "^2.17.1",
@@ -47,6 +46,8 @@
   "overrides": {
     "next": {
       "postcss": "$postcss"
-    }
+    },
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
   }
 }
